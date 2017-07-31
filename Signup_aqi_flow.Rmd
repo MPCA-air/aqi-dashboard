@@ -1,0 +1,201 @@
+---
+title: ""
+author: ""
+date: ""
+output: 
+  html_document: 
+    self_contained: no
+---
+
+
+<style>
+body .main-container {
+max-width: 1300px;
+}
+
+body {
+max-width: 1300px;
+background-color:#e4e4e4;
+}
+
+.signup
+{
+
+    border: 0;
+    overflow: hidden; 
+    z-index: 1;
+    
+    -ms-transform: scale(0.48);
+    -moz-transform: scale(0.48);
+    -o-transform: scale(0.48);
+    -webkit-transform: scale(0.48);
+    transform: scale(0.48);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.current
+{
+
+    border: 0;
+    overflow: hidden; 
+    z-index: -3;
+    
+    -ms-transform: scale(0.98);
+    -moz-transform: scale(0.98);
+    -o-transform: scale(0.98);
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+#slideshow { 
+
+}
+
+#slideshow > div { 
+    position: absolute; 
+    top: 1px; 
+    left: 1px; 
+    right: 1px; 
+    bottom: 1px; 
+}  
+
+</style>
+
+<script type="text/JavaScript">
+  setTimeout(function() { window.location=window.location; }, 300000);
+</script>  
+
+<script>
+$("#slideshow > div:gt(0)").hide();
+
+setInterval(function() { 
+  $('#slideshow > div:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow');
+},  3000);
+
+</script>
+
+
+<div style="position: absolute; 
+            left: 15px; top: 12px; 
+            width: 36%;  height:49%;
+            background-color: white; padding: 5px;">
+
+<div style="margin-left: 12px; margin-right: 12px; 
+            margin-top: 13px; 
+            overflow: hidden; 
+            height: 100%;
+            padding-right: 0px;">
+            
+
+<iframe class="signup" src="https://cf.pca.state.mn.us/EcoSignups/AQIsignup/signup.cfm"   scrolling="no" style="width: 230%; height: 205%; overflow: hidden;margin-left: -45px; margin-top: -17px;"></iframe>
+
+</div></div>
+
+<div style="position: absolute; 
+            left: 38%; top: 12px; 
+            overflow: hidden; 
+            width: 60%; height:49%;
+            background-color:white;
+            padding-top: 0px;
+            padding-left: 15px;
+            z-index: -5;">
+
+<div style="background-color: white;
+            padding: 0; margin-bottom:6px; margin-top:-11px;
+            height: 46px;
+            z-index: 1;">
+            
+## <span style="font-size: 0.8em; font-weight:bold; margin-left: 2px; z-index: 2;">MINNESOTA</span> <span style="color:#939393; z-index: 2;">Current air quality</span>
+</div>
+
+<div style="position: absolute; 
+            left: 15px; top: 30px;
+            width: 51%; height: 100%;
+            overflow: hidden; 
+            margin-top: 0px;
+            margin-left: 5px;
+            margin-bottom: 5px;
+            z-index: -5;">
+            
+            
+<iframe class="current" src="https://mpca.sonomatechdata.com/reportingarea/currentConditions"   frameborder="0" scrolling="no" style="width: 100%; height: 102%; margin-top: -33px; z-index: -5;"></iframe>
+
+</div>
+
+
+<div style="position: absolute; left: 57%; top: 54px; 
+            overflow: hidden; 
+            width: 40%; height: 84%;
+            margin-bottom: 15px;
+            margin-right: 15px;">
+
+<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap"  frameborder="0" style="width: 100%; height: 100%; padding-right: 5%; margin-left:5px;"></iframe>
+
+</div> </div>
+
+
+<div style="position: absolute; 
+            left: 15px; top: 53%; 
+            overflow: hidden; 
+            width: 36%; height:49%;
+            background-color: white;
+            padding-top: 0px;
+            padding-left: 15px;">
+
+<div style="background-color: white;
+            padding: 0; margin-top:-11px;
+            z-index: 3;">
+            
+## <span style="font-size: 0.8em; font-weight:bold; margin-left: 2px; margin-top:-11px;">NATIONAL </span> <span style="color: #939393; margin-top:-11px;">Today's air quality</span>
+</div>
+
+<img src="https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" title="AQI Animation - https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" alt="AQI Animation - https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" usemap="#AnimMap" border="0" style="width: 100%; margin-left: 4px; margin-top: 0px; padding-right: 20px;" />
+</div> 
+
+
+<div style="position: absolute; 
+            left: 38%; top: 53%; 
+            overflow: hidden; 
+            width: 60%; height:49%;
+            background-color: white;
+            padding-top: 0px;
+            padding-left: 15px;">
+
+<div style="background-color: white;
+            padding: 0; margin-top:-11px;
+            z-index: 4;">
+            
+## <span style="font-size: 0.8em; font-weight:bold; margin-left: 2px; margin-top:-11px;">TWIN CITIES</span> <span style="color: #939393; margin-top: -11px;">Today's air quality</span>
+</div>
+
+<div style="margin-left: -10px; margin-top:-10px;">
+
+<div id="slideshow">
+
+  <div>
+    <img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"  height="425px" />
+  </div>
+  <div>
+    <img src="http://advisoranalyst.com/glablog/wp-content/uploads/2013/10/open-road-horizon-010_vectorized.png"  height="425px" />
+  </div>
+</div>
+</div></div>
+
+
+
