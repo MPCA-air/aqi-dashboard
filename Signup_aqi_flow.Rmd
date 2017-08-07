@@ -76,6 +76,7 @@ background-color:#e4e4e4;
   setTimeout(function() { window.location=window.location; }, 300000);
 </script>  
 
+
 <script>
 $("#slideshow > div:gt(0)").hide();
 
@@ -90,6 +91,12 @@ setInterval(function() {
 
 </script>
 
+
+<div id="mask" onclick="javascript: fechar();"></div>
+<div id="popup" class="popup">    
+    <div id="fechar"><a href="javascript: fechar();">Fechar</a></div>
+    <div id="img_pop"><a href="https://airnow.gov/images/pb-cover.gif" target="_blank"><img src="https://airnow.gov/images/pb-cover.gif" /></a></div>    
+</div>
 
 <div style="position: absolute; 
             left: 15px; top: 12px; 
@@ -199,3 +206,68 @@ setInterval(function() {
 
 
 
+```{r echo = F}
+# Pop-up code and style
+```
+<script>
+	// Função que fecha o pop-up ao clicar no botao fechar
+	function fechar(){
+		document.getElementById('popup').style.display = 'none';
+		document.getElementById('mask').style.display = 'none';
+	}
+	// Aqui definimos o tempo para fechar o pop-up automaticamente em milissengundos
+	function abrir(){
+		document.getElementById('popup').style.display = 'block';
+		setTimeout ("fechar()", 15000);
+	}
+	function trocaordem(){
+		document.getElementById("popup").style.zIndex="1";
+	}
+	abrir();
+
+</script>
+
+<style>
+#mask {
+    background-color:#666;
+	background:url(https://keyframe.com.br/wp-content/uploads/2013/01/bg_pop.png) repeat;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9000;
+}
+#popup {
+	color: #000066;
+    height: 500px;
+	display:none;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -158px;
+    padding: 0;
+    position: fixed;
+    top: 32%;
+    width: 500px;
+	z-index:9999;
+}
+#fechar{
+	position:relative;}
+#fechar a{
+	position:absolute;
+	right:-27px;
+	top:0;
+	border:1px solid #F00;
+	width:24px;
+	height:24px;
+	text-indent:-4000px;
+	overflow:hidden;
+	
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+#fechar a:hover{
+	opacity:0.7;
+	filter: alpha(opacity = 70);}
+</style>

@@ -1,0 +1,182 @@
+---
+title: ""
+author: ""
+date: ""
+output: 
+  html_document: 
+    self_contained: no
+    mathjax: null
+    highlight: null
+    toc: false
+    css: slides.css
+---
+
+
+```{r echo = F, message=F, warning=F}
+
+# Update Bloom Sky
+#source("R/update_data.R")
+
+stpaul_img <- "https://s3-us-west-1.amazonaws.com/bskyimgs/gqBxp6apnJSnmJm3qJ1lppatlpGrnpY=.jpg"
+
+duluth_img <- "https://s3-us-west-1.amazonaws.com/bskyimgs/gqBxp6apnJSnrpqkqJ1lppatlpOqmJ4=.jpg"
+
+grand_img  <- "http://www.mwhazecam.net/CreateMain.aspx?t=main&p=images/photos-main/GRAND.jpg"
+
+bwca_img   <- "http://www.fsvisimages.com/images/photos-main/bowa1_main.jpg"
+ 
+```
+
+<script type="text/JavaScript">
+  setTimeout(function() { window.location=window.location; }, 300000);
+</script>  
+
+<div class = "box left">
+<div class = "inner">
+
+<span class = "titles">NATIONAL 
+</span><span class= "titles sub"> Today&#39;s air quality 
+</span>
+
+<div class = "us-map">
+<div style = "us-map-inner">           
+<img src   = "https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" title="U.S. AQI Animation" 
+     style = "width: 108%; margin-left: 4px; margin-right: 2px; margin-top: -20px;"border="0">
+</div>
+</div>
+
+</div></div>
+
+
+<div class = "box left-low">
+<div class = "inner">
+
+<span class = "titles">MINNESOTA
+</span><span class= "titles sub"> Visibility
+</span>
+
+<div class="image">
+<img alt="bwca-haze-cam" src="`r bwca_img`">
+</div> 
+
+<div class="image">
+<img alt="StPaul-haze-cam" src="`r stpaul_img`">
+</div> 
+
+<div class="caption">Boundary Waters (Ely, MN)</div>
+<div class="caption">St-Paul, MN</div>
+
+
+<div class="image">
+<img alt="Duluth-haze-cam" src="`r duluth_img`" style = "margin-top: -74px;">
+</div> 
+
+<div class="image">
+<img alt="GrandPortage-haze-cam" src="`r grand_img`" style = "margin-top: -5px;">
+</div> 
+
+<div class="caption">Duluth, MN</div>
+<div class="caption">Grand Portage, MN</div>
+
+
+</div></div>
+
+<div class = "box right">
+<div class = "inner">
+ 
+
+<span class = "titles">MINNESOTA </span>
+<span class= "titles sub">Current air quality</span>
+
+<div class = "mn-map"> 
+<div class = "mn-map-inner"> 
+<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap" frameborder="0" style="width: 98%; height: 99%; margin-left:-35px; margin-bottom: -490px; "></iframe>
+
+</div></div>
+
+[//]: ## Trend charts ##############
+<div class = "aqi-trends"> 
+
+<div id="slide-titles">
+
+<div><span class = "titles slides">
+ROCHESTER </span> <span class= "titles sub slides">
+Today&#39;s air quality</span>
+</div>
+
+<div><span class = "titles slides">
+TWIN CITIES </span> <span class= "titles sub slides">
+Today&#39;s air quality</span>
+</div>
+
+<div><span class = "titles slides">
+DULUTH </span> <span class= "titles sub slides">
+Today&#39;s air quality</span>
+</div>
+
+
+
+</div>
+
+<div style="margin-left: 0; margin-top: 35px; margin-bottom: 5px;">
+<p class= "titles sub" style="font-weight: bold;"> Ozone </p>
+<div id="slideshow">
+
+<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
+<img class="circle" style="left: -194px; top: 324px;" src="images/circle2-copy.png">
+</div>
+
+<div><img class="slides" src = "https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
+<img class="circle" style="left: -229px; top: 262px;" src="images/circle2.png">
+</div>
+
+<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
+<img class="circle" style="left: -177px; top: 135px;" src="images/circle2-copy.png">
+</div>
+
+
+</div>
+</div>
+
+<div style="margin-left: 0; margin-top: 150px; margin-bottom: 10px;">
+<p class= "titles sub" style="font-weight: bold;"> PM2.5 </p>
+<div id="slideshow2">
+<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
+<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
+</div>
+</div>
+
+</div>
+
+</div> </div>
+            
+[//]: ###############################
+
+<div class="box right-low">
+<div class="inner">
+            
+<span class="titles">MINNESOTA</span>
+<span class="titles sub">Air quality forecasts</span>
+
+<div class = "forecast-map">
+<span class= "titles sub" style="margin-left: 0px;> `r weekdays(Sys.Date() + 1)`</span>
+<img src="images/state_sites.PNG" style="border: 1px solid #a5a9ac;">
+</div>
+
+<div class = "forecast-map">
+<span class= "titles sub" style="margin-left: 0px;> `r weekdays(Sys.Date() + 2)`</span>
+<img src="images/state_sites.PNG" style="border: 1px solid #a5a9ac;">
+</div>
+
+<div class = "forecast-map">
+<span class= "titles sub" style="margin-left: 0px;> `r weekdays(Sys.Date() + 3)`</span>
+<img src="images/state_sites.PNG" style="margin-right: 3px; border: 1px solid #a5a9ac;">
+</div>
+
+</div>
+</div>
+
+
+<script src="js/slideshow.js"> </script>
+<script src="js/slideshow2.js"> </script>
+<script src="js/slide-titles.js"> </script>

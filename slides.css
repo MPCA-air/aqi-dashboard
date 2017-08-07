@@ -1,0 +1,233 @@
+body .main-container {
+  max-width: 1300px;
+}
+
+body {
+  max-width: 1300px;
+  background-color:#e4e4e4;
+}
+
+
+.image {
+  float: left;
+  width: 45%;
+  height: 40%;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: -2px;
+  overflow: hidden;
+  border: 1px solid #a5a9ac;
+}
+
+.circle { 
+  position:absolute; 
+  z-index: 9000;
+  }
+  
+.caption {
+  float: left;
+  width: 45%;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: -20px;
+  margin-bottom: 18px;
+  padding-right: 8px;
+  text-align: right;
+  overflow: hidden;
+  font-family: Verdana, Arial, sans-serif;
+  color: #FFF;
+  background:url(images/background_gray4.png) repeat;
+  z-index: 9000;
+}
+
+.titles {
+  font-size: 1.4em; 
+  background-color: white; 
+  font-weight: bold; 
+  margin-left: 4px; 
+  margin-top: 0; 
+  z-index: 200;
+}
+
+.sub {
+  font-size: 1.2em; 
+  font-weight: normal; 
+  color: #939393;
+}
+
+.box {
+   position: absolute; 
+   background-color: white; 
+   padding: 5px;
+   overflow: hidden; 
+}
+
+.left {
+  left: 18px; 
+  top: 12px; 
+  padding-top: 0px;
+  width: 36.6%;  
+  height:53.6%;
+}
+
+.left-low {
+  left: 18px; 
+  top: 56%; 
+  width: 36.6%;  
+  height:43%;
+}
+
+.inner { 
+  padding: 0; 
+  margin-left: 12px; 
+  margin-right: 12px; 
+  margin-top: 10px;
+  margin-bottom: 2%; 
+  height: 100%;
+  z-index: 1;
+}
+
+.right { 
+  left: 38.2%; 
+  top: 12px; 
+  width: 61%; 
+  height:53.6%;
+  padding-top: 0px;
+  z-index: -5;
+}
+
+.right-low {
+  left: 38.2%; 
+  top: 56%; 
+  width: 61%; 
+  height:43%;
+}
+
+.us-map {
+  position: absolute;
+  left: 20px;
+  bottom: 3%;
+  width: 94%; 
+  height: 88%;
+  overflow: hidden;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 5px;
+  padding-top: 8px;
+  padding-bottom: 15px;
+  z-index: 6;
+}
+
+.us-map-inner {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 95%;
+   overflow: hidden;
+   z-index: -5;
+}
+
+
+.mn-map { 
+  width:34%;
+  height: 88%;
+  overflow: hidden;
+  z-index: -5;
+  margin-left: 4px;
+}
+
+.mn-map-inner { 
+  margin-top: 0px;
+  height: 147%;
+  width: 106%;
+  overflow: hidden;
+}
+
+.aqi-trends { 
+  position: absolute;
+  top: 6px;
+  left: 36%;
+  margin-top: 10px;
+  width:62%;
+  height: 85%;
+  z-index: 5;
+}
+
+
+.map
+{
+    border: 0;
+    overflow: hidden; 
+    z-index: -3;
+    
+    -ms-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.airnow
+{
+    border: 0;
+    overflow: hidden; 
+    z-index: -3;
+    
+    -ms-transform: scale(.89);
+    -moz-transform: scale(.89);
+    -o-transform: scale(.89);
+    -webkit-transform: scale(.89);
+    transform: scale(.89);
+    
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+
+.slides {position: relative;}
+
+#slide-titles { position: relative; }
+
+#slide-titles > div { 
+  position: absolute; 
+  top:  -5px; 
+  left: 0px;
+} 
+
+#slideshow { position: relative; }
+
+#slideshow > div { 
+  position: absolute; 
+  top: -5px; 
+  left: 2px; 
+} 
+
+#slideshow2 { position: relative; }
+
+#slideshow2 > div { 
+  position: absolute; 
+  top: -5px; 
+  left: 2px; 
+} 
+
+.forecast-map {
+  float: left;
+  height: 86%; 
+  width: 25%; 
+  overflow: hidden; 
+  margin-top: -4px; 
+  margin-right: 21px;
+  margin-left: 5px;
+}
+
+
+	
