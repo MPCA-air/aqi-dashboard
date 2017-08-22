@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+.exe
+
+/*phantomjs/*
+js/phantomjs/*.*
+js/phantomjs/bin/phantomjs.exe

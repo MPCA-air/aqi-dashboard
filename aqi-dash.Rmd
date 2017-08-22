@@ -13,18 +13,45 @@ output:
 
 
 ```{r echo = F, message=F, warning=F}
+library(dplyr)
+
+img_styles <- c("Duluth"          = "margin-top: -74px;",
+                "Plymouth"        = "margin-top: -70px;",
+                "Grand Portage"   = "margin-top: -15px;",
+                "Grand Marais"    = "margin-top: -25px; margin-left: -20px",
+                "St Paul"         = "margin-top: -90px;",
+                "Bancroft (IA)"   = "margin-top: -55px;",
+                "Sioux City (IA)" = "margin-top: -55px;",
+                "Minneapolis"     = "margin-top: -45px;",
+                "Mille Lacs"      = "margin-top: -45px;",
+                "Preston"         = "margin-top: -35px;",
+                "Truman"          = "margin-top: -35px;",
+                "Boundary Waters" = "margin-bottom: -55px;",
+                "Shorewood"       = "margin-bottom: -55px; margin-left: -20px")
+ 
+print_slide <- function(img_class = "image", img_url, style = "margin-top: -15px;", city) {
+  
+  if(!is.null(city)) style <- img_styles[city][[1]]
+  
+  cat(paste0(c('<div class = "', img_class, '">',
+             '<img src = "',   img_url, '"',
+             ifelse(nchar(style) > 0, paste0(' style = "', style, '"'), ""),
+             '></div> \n\n'), collapse = ""))
+}
+
+print_caption <- function(class = "caption", label) {
+  cat(paste0(c('<div class = "', class, '">', label, '</div> \n'), collapse = ""))
+}
 
 # Update Bloom Sky
-#source("R/update_data.R")
 
-stpaul_img <- "https://s3-us-west-1.amazonaws.com/bskyimgs/gqBxp6apnJSnmJm3qJ1lppatlpGrnpY=.jpg"
+#source("R/update_bloom_sky.R")
 
-duluth_img <- "https://s3-us-west-1.amazonaws.com/bskyimgs/gqBxp6apnJSnrpqkqJ1lppatlpOqmJ4=.jpg"
+bloom_sites <- read.csv("data/Bloom Sky site list.csv", stringsAsFactors = F)
 
-grand_img  <- "http://www.mwhazecam.net/CreateMain.aspx?t=main&p=images/photos-main/GRAND.jpg"
-
-bwca_img   <- "http://www.fsvisimages.com/images/photos-main/bowa1_main.jpg"
- 
+# Clean city name
+#bloom_sites$city <- gsub("[ ]", "-", bloom_sites$city)
+bloom_sites$city <- gsub("[.]", "", bloom_sites$city)
 ```
 
 <script type="text/JavaScript">
@@ -51,42 +78,45 @@ bwca_img   <- "http://www.fsvisimages.com/images/photos-main/bowa1_main.jpg"
 <div class = "box left-low">
 <div class = "inner">
 
-<span class = "titles">MINNESOTA
-</span><span class= "titles sub"> Visibility
-</span>
+<span class = "titles">MINNESOTA</span>
+<span class = "titles sub">Visibility</span>
 
-<div class="image">
-<img alt="bwca-haze-cam" src="`r bwca_img`">
-</div> 
+<div id = "haze-cams">
 
-<div class="image">
-<img alt="StPaul-haze-cam" src="`r stpaul_img`">
-</div> 
+```{r haze-cams, echo = FALSE, results = 'asis'}
 
-<div class="caption">Boundary Waters (Ely, MN)</div>
-<div class="caption">St-Paul, MN</div>
+for(i in unique(bloom_sites$group)[]) {
+  
+  cat('<div class = "haze-slides">')
+  
+  images <- filter(bloom_sites, group == i)
+  
+  print_slide(img_url = images$bloom_img[1], city = images$city[1])
+  print_slide(img_url = images$bloom_img[2], city = images$city[2])
+  
+  print_caption(label = images$city[1])
+  print_caption(label = images$city[2])
+  
+  print_slide(img_url = images$bloom_img[3], city = images$city[3])
+  print_slide(img_url = images$bloom_img[4], city = images$city[4])
+  
+  print_caption(label = images$city[3])
+  print_caption(label = images$city[4])
+  cat("</div>")
+}
+```
 
-
-<div class="image">
-<img alt="Duluth-haze-cam" src="`r duluth_img`" style = "margin-top: -74px;">
-</div> 
-
-<div class="image">
-<img alt="GrandPortage-haze-cam" src="`r grand_img`" style = "margin-top: -5px;">
-</div> 
-
-<div class="caption">Duluth, MN</div>
-<div class="caption">Grand Portage, MN</div>
-
-
+</div>
 </div></div>
+
+
 
 <div class = "box right">
 <div class = "inner">
  
 
 <span class = "titles">MINNESOTA </span>
-<span class= "titles sub">Current air quality</span>
+<span class = "titles sub">Current air quality</span>
 
 <div class = "mn-map"> 
 <div class = "mn-map-inner"> 
@@ -94,10 +124,11 @@ bwca_img   <- "http://www.fsvisimages.com/images/photos-main/bowa1_main.jpg"
 
 </div></div>
 
-[//]: ## Trend charts ##############
+
+
 <div class = "aqi-trends"> 
 
-<div id="slide-titles">
+<div id = "city-titles">
 
 <div><span class = "titles slides">
 ROCHESTER </span> <span class= "titles sub slides">
@@ -114,35 +145,37 @@ DULUTH </span> <span class= "titles sub slides">
 Today&#39;s air quality</span>
 </div>
 
-
-
 </div>
 
-<div style="margin-left: 0; margin-top: 35px; margin-bottom: 5px;">
+
+<div style="margin-left: 0; margin-top: 45px; margin-bottom: 5px;">
 <p class= "titles sub" style="font-weight: bold;"> Ozone </p>
-<div id="slideshow">
+
+<div id = "o3-trends">
 
 <div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
-<img class="circle" style="left: -194px; top: 324px;" src="images/circle2-copy.png">
+<img class="circle" style="left: -200px; top: 324px;" src="images/circle2-copy.png">
 </div>
 
-<div><img class="slides" src = "https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
-<img class="circle" style="left: -229px; top: 262px;" src="images/circle2.png">
+<div><img class="slides" src = "https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart2.gif">
+<img class="circle" style="left: -235px; top: 262px;" src="images/circle2.png">
 </div>
 
 <div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
-<img class="circle" style="left: -177px; top: 135px;" src="images/circle2-copy.png">
+<img class="circle" style="left: -183px; top: 135px;" src="images/circle2-copy.png">
+</div>
+
+</div>
 </div>
 
 
-</div>
-</div>
+<div style ="margin-left: 0; margin-top: 170px; margin-bottom: 5px;">
+<p class = "titles sub" style ="font-weight: bold;"> PM2.5 </p>
 
-<div style="margin-left: 0; margin-top: 150px; margin-bottom: 10px;">
-<p class= "titles sub" style="font-weight: bold;"> PM2.5 </p>
-<div id="slideshow2">
-<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
-<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
+<div id = "pm-trends">
+<div><img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
+<div><img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart2.gif"></div>
+<div><img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
 </div>
 </div>
 
@@ -150,7 +183,6 @@ Today&#39;s air quality</span>
 
 </div> </div>
             
-[//]: ###############################
 
 <div class="box right-low">
 <div class="inner">
@@ -159,24 +191,42 @@ Today&#39;s air quality</span>
 <span class="titles sub">Air quality forecasts</span>
 
 <div class = "forecast-map">
-<span class= "titles sub" style="margin-left: 0px;> `r weekdays(Sys.Date() + 1)`</span>
-<img src="images/state_sites.PNG" style="border: 1px solid #a5a9ac;">
+<span class= "titles sub" style="margin-left: 0px;"> 
+`r weekdays(Sys.Date() + 1)` 
+</span>
+<img src="images/state_sites.PNG" style="border: 1px solid #a5a9ac; margin-left: 4px;">
 </div>
 
 <div class = "forecast-map">
-<span class= "titles sub" style="margin-left: 0px;> `r weekdays(Sys.Date() + 2)`</span>
-<img src="images/state_sites.PNG" style="border: 1px solid #a5a9ac;">
-</div>
-
-<div class = "forecast-map">
-<span class= "titles sub" style="margin-left: 0px;> `r weekdays(Sys.Date() + 3)`</span>
-<img src="images/state_sites.PNG" style="margin-right: 3px; border: 1px solid #a5a9ac;">
-</div>
-
-</div>
+<span class= "titles sub" style="margin-left: 0px;"> 
+`r weekdays(Sys.Date() + 2)` 
+</span>
+<img src="images/state_sites2.PNG" style="border: 1px solid #a5a9ac; margin-left: 4px;">
 </div>
 
 
-<script src="js/slideshow.js"> </script>
-<script src="js/slideshow2.js"> </script>
-<script src="js/slide-titles.js"> </script>
+```{r aqi-history, echo=F}
+```
+<div class = "aqi-history"> 
+
+<div><span class = "titles slides">
+2017 </span> <span class= "titles sub slides">
+Site history by AQI color</span>
+</div>
+
+<div id = "aqi-days">
+
+<div class = "day-slides"><img src = "images/history1.PNG" width="95%"></div>
+<div class = "day-slides"><img src = "images/history2.PNG" width="95%"></div>
+<div class = "day-slides"><img src = "images/history3.PNG" width="95%"></div>
+<div class = "day-slides"><img src = "images/history4.PNG" width="95%"></div>
+
+</div>
+
+</div>
+</div></div>
+
+
+<script src="js/trend_slides.js"> </script>
+<script src="js/haze-cams.js"> </script>
+<script src="js/aqi-days.js"> </script>

@@ -31,8 +31,7 @@ body {
   margin-right: 15px;
   margin-top: -20px;
   margin-bottom: 18px;
-  padding-right: 8px;
-  text-align: right;
+  padding-left: 8px;
   overflow: hidden;
   font-family: Verdana, Arial, sans-serif;
   color: #FFF;
@@ -83,7 +82,7 @@ body {
   margin-right: 12px; 
   margin-top: 10px;
   margin-bottom: 2%; 
-  height: 100%;
+  height: 97%;
   z-index: 1;
 }
 
@@ -129,15 +128,16 @@ body {
 
 
 .mn-map { 
-  width:34%;
-  height: 88%;
+  width:33%;
+  height: 91%;
   overflow: hidden;
   z-index: -5;
   margin-left: 4px;
+  margin-top: -3px;
 }
 
 .mn-map-inner { 
-  margin-top: 0px;
+  margin-top: 0;
   height: 147%;
   width: 106%;
   overflow: hidden;
@@ -145,11 +145,21 @@ body {
 
 .aqi-trends { 
   position: absolute;
-  top: 6px;
+  top: 10px;
   left: 36%;
-  margin-top: 10px;
+  margin-top: 0px;
   width:62%;
   height: 85%;
+  z-index: 5;
+}
+
+.aqi-history { 
+  position: absolute;
+  top: 15px;
+  left: 48%;
+  margin-top: 0px;
+  width:43%;
+  height: 87%;
   z-index: 5;
 }
 
@@ -195,39 +205,69 @@ body {
 
 .slides {position: relative;}
 
-#slide-titles { position: relative; }
+#city-titles { position: relative; }
 
-#slide-titles > div { 
+#city-titles > div { 
   position: absolute; 
-  top:  -5px; 
+  top:  4px; 
   left: 0px;
 } 
 
-#slideshow { position: relative; }
+#o3-trends { position: relative; }
 
-#slideshow > div { 
+#o3-trends > div { 
   position: absolute; 
-  top: -5px; 
+  top:  -6px; 
   left: 2px; 
 } 
 
-#slideshow2 { position: relative; }
+#pm_trends { position: relative; }
 
-#slideshow2 > div { 
+#pm-trends > div { 
   position: absolute; 
-  top: -5px; 
+  top: 268px; 
   left: 2px; 
 } 
+
+
+#haze-cams { 
+  position: relative;
+  width: 100%; 
+  height: 100%;
+  margin-top: -6px;
+}
+
+.haze-slides { 
+  position: absolute; 
+  width: 100%; 
+  height: 100%;
+  top:  12px; 
+  left: 2px; 
+} 
+
 
 .forecast-map {
   float: left;
-  height: 86%; 
-  width: 25%; 
+  height: 94%; 
+  width: 22%; 
   overflow: hidden; 
   margin-top: -4px; 
-  margin-right: 21px;
-  margin-left: 5px;
+  margin-right: 12px;
+  margin-left: 4px;
+  padding-right: 6px;
 }
 
+#aqi-days { 
+  position: relative;
+  width: 100%; 
+  height: 100%;
+}
 
+.day-slides { 
+  position: absolute; 
+  width: 100%; 
+  height: 100%;
+  top:  -6px; 
+  left: -4px; 
+} 
 	
