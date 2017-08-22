@@ -15,19 +15,22 @@ output:
 ```{r echo = F, message=F, warning=F}
 library(dplyr)
 
-img_styles <- c("Duluth"          = "margin-top: -74px;",
-                "Plymouth"        = "margin-top: -70px;",
+img_styles <- c("Bancroft (IA)"   = "margin-top: -55px;",
+                "Boundary Waters" = "margin-top: 0px;",
+                "Chanhassen"      = "margin-top: -34px;",
+                "Chisago City"    = "margin-top: -34px;",
+                "Duluth"          = "margin-top: -84px;",
                 "Grand Portage"   = "margin-top: -15px;",
-                "Grand Marais"    = "margin-top: -25px; margin-left: -20px",
-                "St Paul"         = "margin-top: -90px;",
-                "Bancroft (IA)"   = "margin-top: -55px;",
-                "Sioux City (IA)" = "margin-top: -55px;",
+                "Grand Marais"    = "margin-top: -25px;",
                 "Minneapolis"     = "margin-top: -45px;",
                 "Mille Lacs"      = "margin-top: -45px;",
+                "Plymouth"        = "margin-top: -70px;",
                 "Preston"         = "margin-top: -35px;",
+                "Shorewood"       = "margin-bottom: -25px;",
+                "St Paul"         = "margin-top: -105px;",
+                "Sioux City (IA)" = "margin-top: -55px;",
                 "Truman"          = "margin-top: -35px;",
-                "Boundary Waters" = "margin-bottom: -55px;",
-                "Shorewood"       = "margin-bottom: -55px; margin-left: -20px")
+                "Waseca"          = "margin-top: -35px;")
  
 print_slide <- function(img_class = "image", img_url, style = "margin-top: -15px;", city) {
   
