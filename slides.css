@@ -63,7 +63,7 @@ body {
 
 .left {
   left: 18px; 
-  top: 12px; 
+  top: 1.3%; 
   padding-top: 0px;
   width: 36.6%;  
   height:53.6%;
@@ -71,9 +71,9 @@ body {
 
 .left-low {
   left: 18px; 
-  top: 56%; 
+  top: 56.2%; 
   width: 36.6%;  
-  height:43%;
+  height:42.4%;
 }
 
 .inner { 
@@ -88,7 +88,7 @@ body {
 
 .right { 
   left: 38.2%; 
-  top: 12px; 
+  top: 1.3%; 
   width: 61%; 
   height:53.6%;
   padding-top: 0px;
@@ -97,9 +97,9 @@ body {
 
 .right-low {
   left: 38.2%; 
-  top: 56%; 
+  top: 56.2%; 
   width: 61%; 
-  height:43%;
+  height:42.4%;
 }
 
 .us-map {
@@ -251,7 +251,7 @@ body {
   height: 94%; 
   width: 22%; 
   overflow: hidden; 
-  margin-top: -4px; 
+  margin-top: 0px; 
   margin-right: 12px;
   margin-left: 4px;
   padding-right: 6px;
@@ -267,7 +267,7 @@ body {
   position: absolute; 
   width: 100%; 
   height: 100%;
-  top:  -6px; 
+  top:  -2px; 
   left: -4px; 
 } 
 	
