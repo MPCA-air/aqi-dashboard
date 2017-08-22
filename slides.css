@@ -209,7 +209,7 @@ body {
 
 #city-titles > div { 
   position: absolute; 
-  top:  4px; 
+  top:  0px; 
   left: 0px;
 } 
 
