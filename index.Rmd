@@ -98,7 +98,7 @@ print_max <- function(slide_num = 1, aqi_vals = 100) {
 <div class = "us-map">
 <div style = "us-map-inner">           
 <img src   = "https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" title="U.S. AQI Animation" 
-     style = "width: 108%; margin-left: 4px; margin-right: 2px; margin-top: -20px;"border="0">
+     style = "width: 108%; margin-left: 4px; margin-right: 2px; margin-top: -2%;"border="0">
 </div>
 </div>
 
@@ -148,9 +148,11 @@ for(i in unique(bloom_sites$group)[]) {
 <span class = "titles">MINNESOTA</span>
 <span class = "titles sub">Current air quality</span>
 
+<div style = "height: 1%;"></div>
 <div class = "mn-map"> 
 <div class = "mn-map-inner"> 
-<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap" frameborder="0" style="width: 98%; height: 90%; margin-left: -15px; margin-bottom: -85%; "></iframe>
+<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap" frameborder="0" 
+style="width: 98%; height: 95%; margin-left: -68px; margin-bottom: -85%;"></iframe>
 
 </div></div>
 
@@ -177,28 +179,28 @@ Today&#39;s air quality</span>
 </div>
 
 
-<div style="margin-left: 0; margin-top: 45px; margin-bottom: 5px;">
+<div style="margin-left: 0; margin-top: 11%; margin-bottom: 0px;">
 <p class= "titles sub" style="font-weight: bold;"> Ozone </p>
 
 <div id = "o3-trends">
 
 <div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
-<img class="circle" style="left: -200px; top: 324px;" src="images/circle2-copy.png">
+<img class="circle" style="left: -196px; top: 324px;" src="images/circle2-copy.png">
 </div>
 
 <div><img class="slides" src = "https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart2.gif">
-<img class="circle" style="left: -235px; top: 262px;" src="images/circle2.png">
+<img class="circle" style="left: -232px; top: 258px;" src="images/circle2.png">
 </div>
 
 <div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
-<img class="circle" style="left: -183px; top: 135px;" src="images/circle2-copy.png">
+<img class="circle" style="left: -180px; top: 128px;" src="images/circle2-copy.png">
 </div>
 
 </div>
 </div>
 
 
-<div style ="margin-left: 0; margin-top: 170px; margin-bottom: 5px;">
+<div style ="margin-left: 0; margin-top: 24%; margin-bottom: 5px;">
 <p class = "titles sub" style ="font-weight: bold;">PM2.5</p>
 
 <div id = "pm-trends">
@@ -244,7 +246,7 @@ Today&#39;s air quality</span>
 2017</span><span class= "titles sub">Count of AQI days by color</span>
 </div>
 
-<div id = "aqi-days">
+<div id = "aqi-days" style="margin-top: 4%;>
 ```{r max_aqis, echo = FALSE, results = 'asis'}
 
 for(i in 1:4) { print_max(i) }

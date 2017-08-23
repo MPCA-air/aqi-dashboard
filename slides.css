@@ -107,14 +107,14 @@ body {
 .us-map {
   position: absolute;
   left: 20px;
-  top: 8%;
+  top: 7.2%;
   width: 94%; 
   height: 88%;
   overflow: hidden;
   margin-top: 10px;
   margin-left: 0px;
   margin-right: 5px;
-  padding-top: 28px;
+  padding-top: 20px;
   padding-bottom: 8px;
   z-index: 6;
 }
@@ -130,25 +130,38 @@ body {
 
 
 .mn-map { 
-  width: 33.6%;
-  height: 92%;
+  width: 35%;
+  height: 90%;
   overflow: hidden;
-  z-index: -5;
+  z-index: 1;
   margin-left: 0.7%;
-  margin-top: 1%;
+  margin-top: -1%;
 }
 
 .mn-map-inner { 
-  margin-top: 0;
-  height: 130%;
-  width: 100%;
+  margin-top: -4%;
+  height: 150%;
+  width: 115%;
   overflow: hidden;
+  
+  -ms-transform: scale(1.07);
+  -moz-transform: scale(1.07);
+  -o-transform: scale(1.07);
+  -webkit-transform: scale(1.07);
+  transform: scale(1.07);
+
+  -ms-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  
 }
 
 .aqi-trends { 
   position: absolute;
   top: 10px;
-  left: 36%;
+  left: 37.5%;
   margin-top: 0px;
   width:62%;
   height: 85%;
@@ -219,16 +232,16 @@ body {
 
 #o3-trends > div { 
   position: absolute; 
-  top:  -6px; 
-  left: 2px; 
+  top:  -4px; 
+  left: 4px; 
 } 
 
 #pm_trends { position: relative; }
 
 #pm-trends > div { 
   position: absolute; 
-  top: 280px; 
-  left: 2px; 
+  top: 66.5%; 
+  left: 4px; 
 } 
 
 
@@ -287,8 +300,8 @@ body {
 }
 	
 .max-title {
-  font-size: 0.75em; 
-  font-weight: normal; 
+  font-size: 0.8em; 
+  font-weight: 400; 
   color: #939393;
   margin-bottom: -4px;
   text-decoration: underline;
