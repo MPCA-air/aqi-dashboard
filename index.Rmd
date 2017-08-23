@@ -246,7 +246,7 @@ Today&#39;s air quality</span>
 2017</span><span class= "titles sub">Count of AQI days by color</span>
 </div>
 
-<div id = "aqi-days" style="margin-top: 4%;>
+<div id = "aqi-days" style="margin-top: 3%;>
 ```{r max_aqis, echo = FALSE, results = 'asis'}
 
 for(i in 1:4) { print_max(i) }
