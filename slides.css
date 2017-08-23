@@ -270,4 +270,24 @@ body {
   top:  -2px; 
   left: -4px; 
 } 
+
+.max-aqi {
+  position: absolute; 
+  top:  -26px; 
+  left: 89%;
+  width: 30%; 
+  height: 100%;
+  text-align: center;
+  z-index: 9999;
+  line-height: 205%;
+  font-size: 1.48em;
+  font-weight: 700;
+}
 	
+.max-title {
+  font-size: 0.75em; 
+  font-weight: normal; 
+  color: #939393;
+  margin-bottom: -4px;
+  text-decoration: underline;
+}

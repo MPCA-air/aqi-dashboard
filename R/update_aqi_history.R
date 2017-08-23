@@ -11,6 +11,7 @@ library(hrbrthemes)
 
 # AQI color functions
 setwd("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//")
+
 source("Web/aqi-watch/R/aqi_convert.R")
 
 
@@ -75,7 +76,7 @@ history <- filter(history, !short_name %in% c("Marshall2",
                                               "Ramsey_Health", 
                                               "St_Louis_Park", 
                                               "Duluth_WDSE",
-                                              "Cedar_Creek",
+                                              #"Cedar_Creek",
                                               "Stanton"))
 
 # Update site names
@@ -92,13 +93,23 @@ history <- history %>%
            group_by(hist_name) %>%
            mutate(total_days   = sum(aqi_days),
                   aqi_days_pct = aqi_days / sum(total_days),
-                  aqi_label    = aqi_days, #paste(aqi_days, "days"),
+                  aqi_label    = ifelse(aqi_days < 100, aqi_days, paste(aqi_days, "days")),
                   aqi_pos      = ifelse(aqi_color == "aqi_green", 110,
-                                        ifelse(aqi_color == "aqi_yellow", 3 + 0.3 * aqi_days + max(0, aqi_days[aqi_color == "aqi_orange"], na.rm = T),
-                                               3 + 0.1 * aqi_days)))
+                                        ifelse(aqi_color == "aqi_yellow", 4 + 0.3 * aqi_days + max(0, aqi_days[aqi_color == "aqi_orange"], na.rm = T),
+                                               4 + 0.3 * aqi_days)))
 
 # Find max for chart scaling
 max_aqi_days <- max(history$total_days, na.rm = T) + 15
+
+
+# Save Max AQI table
+max_data <- filter(history, aqi_days > 0, aqi_color == "aqi_green") %>%
+            arrange(desc(aqi_color), -aqi_days) %>%
+            select(`Air Monitor`, site_catid, aqi_max) %>%
+            mutate(aqi_color = aqi2color(aqi_max))
+
+write_csv(max_data, 
+          "X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Verification//AQI History//2017_site_max_aqi.csv")
 
 
 # Split sites into 4 groups of 6
@@ -134,11 +145,11 @@ for(i in 1:4) {
   day_chart <-
     ggplot(sub_data, aes(hist_name, aqi_days_bump)) +
       geom_bar(stat="identity", aes(fill = aqi_color), position = position_stack(reverse = F)) +
-      geom_text(size = 3, aes(label = ifelse(aqi_color %in% c("aqi_green", "aqi_yellow"), aqi_label, ""),
-                              y = aqi_pos, color= aqi_color)) +
+      geom_text(size = 3.7, fontface = "bold", aes(label = ifelse(aqi_color %in% c("aqi_green", "aqi_yellow"), aqi_label, ""),
+                                y = aqi_pos, color= aqi_color)) +
       coord_flip() +
       theme_ipsum(grid="X", base_size = 10) +
-      scale_fill_manual(values = plot_colors) +
+      scale_fill_manual(values  = plot_colors) +
       scale_color_manual(values = text_colors) +
       ylim(c(0, max_aqi_days)) + 
       #scale_x_discrete(labels = percent_format()) +
@@ -161,25 +172,27 @@ for(i in 1:4) {
   dev.off()
   
   # % chart
-  pct_chart <- 
-    ggplot(sub_data, aes(hist_name, aqi_days_pct)) +
-    geom_bar(stat="identity", aes(fill = aqi_color), position = position_stack(reverse = T)) +
-    geom_text(size = 3, aes(label = ifelse(aqi_color == "aqi_green", paste0(sprintf("%.0f", aqi_days_pct*100),"%"),""),
-                            y = (1 - 0.52 * aqi_days_pct)), color= "white") +
-    coord_flip() +
-    theme_ipsum(grid="X") +
-    scale_fill_manual(values = plot_colors) +
-    #scale_color_manual(values = text_colors) +
-    #scale_x_discrete(labels = percent_format()) +
-    guides(fill = F, color = F) +
-    labs(x = NULL, y = NULL) + 
-    theme(axis.title.x = element_blank(),
-          axis.text.x  = element_blank(),
-          axis.ticks.x = element_blank(),
-          panel.grid.major = element_blank(),
-          plot.margin = unit(c(0,0,0,0.5), "lines"))
-  
-  #print(pct_chart)
+  if(F) {
+    pct_chart <- 
+      ggplot(sub_data, aes(hist_name, aqi_days_pct)) +
+      geom_bar(stat="identity", aes(fill = aqi_color), position = position_stack(reverse = T)) +
+      geom_text(size = 3, aes(label = ifelse(aqi_color == "aqi_green", paste0(sprintf("%.0f", aqi_days_pct*100),"%"),""),
+                              y = (1 - 0.52 * aqi_days_pct)), color= "white") +
+      coord_flip() +
+      theme_ipsum(grid="X") +
+      scale_fill_manual(values = plot_colors) +
+      #scale_color_manual(values = text_colors) +
+      #scale_x_discrete(labels = percent_format()) +
+      guides(fill = F, color = F) +
+      labs(x = NULL, y = NULL) + 
+      theme(axis.title.x = element_blank(),
+            axis.text.x  = element_blank(),
+            axis.ticks.x = element_blank(),
+            panel.grid.major = element_blank(),
+            plot.margin = unit(c(0,0,0,0.5), "lines"))
+    
+    #print(pct_chart)
+  } 
   
   # Save chart 
 } 

@@ -14,6 +14,7 @@ output:
 
 ```{r echo = F, message=F, warning=F}
 library(dplyr)
+library(readr)
 
 img_styles <- c("Bancroft (IA)"   = "margin-top: -55px;",
                 "Boundary Waters" = "margin-top: 0px;",
@@ -53,12 +54,38 @@ print_caption <- function(class = "caption", label) {
 bloom_sites <- read.csv("data/Bloom Sky site list.csv", stringsAsFactors = F)
 
 # Clean city name
-#bloom_sites$city <- gsub("[ ]", "-", bloom_sites$city)
 bloom_sites$city <- gsub("[.]", "", bloom_sites$city)
+
+# Site AQI max for 2017
+site_max <- read_csv("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Verification//AQI History//2017_site_max_aqi.csv")
+
+print_max <- function(slide_num = 1, aqi_vals = 100) {
+  
+  x <- (slide_num - 1) * 6
+  
+  aqi_vals <- site_max$aqi_max[(x+1):(x+6)]
+  
+  colors   <- site_max$aqi_color[(x+1):(x+6)]
+  
+  cat(paste0(c('<div class = "day-slides">',
+             '<img src = "images/history',   slide_num, '.png" width="95%">',
+             '<div class = "max-aqi">', 
+             '<div class ="max-title">Max AQI</div>',
+             '<div>', 
+             '<p style="color: ', colors[1], '">', aqi_vals[1], '</p>',
+             '<p style="color: ', colors[2], '">', aqi_vals[2], '</p>',
+             '<p style="color: ', colors[3], '">', aqi_vals[3], '</p>',
+             '<p style="color: ', colors[4], '">', aqi_vals[4], '</p>',
+             '<p style="color: ', colors[5], '">', aqi_vals[5], '</p>',
+             '<p style="color: ', colors[6], '">', aqi_vals[6], '</p>',
+             '</div>',
+             '</div></div>'), 
+             collapse = ""))
+}
 ```
 
 <script type="text/JavaScript">
-  setTimeout(function() { window.location=window.location; }, 300000);
+  setTimeout(function() { window.location=window.location; }, 600000);
 </script>  
 
 <div class = "box left">
@@ -197,36 +224,38 @@ Today&#39;s air quality</span>
 <span class= "titles sub" style="margin-left: 0px;"> 
 `r weekdays(Sys.Date() + 1)` 
 </span>
-<img src="images/state_sites.PNG" style="border: 1px solid #a5a9ac; margin-left: 4px;">
+<img src="images/forecast_map_day1.png" style="border: 1px solid #a5a9ac; margin-left: 4px; margin-top:4px;">
 </div>
 
 <div class = "forecast-map">
 <span class= "titles sub" style="margin-left: 0px;"> 
 `r weekdays(Sys.Date() + 2)` 
 </span>
-<img src="images/state_sites2.PNG" style="border: 1px solid #a5a9ac; margin-left: 4px;">
+<img src="images/forecast_map_day2.png" style="border: 1px solid #a5a9ac; margin-left: 4px; margin-top:4px;">
 </div>
 
 
 ```{r aqi-history, echo=F}
 ```
+
+
 <div class = "aqi-history"> 
 
 <div><span class = "titles slides">
 2017 </span> <span class= "titles sub slides">
-Site history by AQI color</span>
+Count of days by AQI color</span>
 </div>
 
 <div id = "aqi-days">
+```{r max_aqis, echo = FALSE, results = 'asis'}
 
-<div class = "day-slides"><img src = "images/history1.PNG" width="95%"></div>
-<div class = "day-slides"><img src = "images/history2.PNG" width="95%"></div>
-<div class = "day-slides"><img src = "images/history3.PNG" width="95%"></div>
-<div class = "day-slides"><img src = "images/history4.PNG" width="95%"></div>
-
+for(i in 1:4) { print_max(i) }
+```
 </div>
 
 </div>
+
+
 </div></div>
 
 
