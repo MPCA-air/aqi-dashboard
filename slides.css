@@ -49,7 +49,7 @@ body {
 }
 
 .sub {
-  font-size: 1.6em; 
+  font-size: 1.5em; 
   font-weight: normal; 
   color: #939393;
 }
@@ -130,12 +130,12 @@ body {
 
 
 .mn-map { 
-  width: 35%;
-  height: 90%;
+  width: 35.4%;
+  height: 90.1%;
   overflow: hidden;
   z-index: 1;
-  margin-left: 0.7%;
-  margin-top: -1%;
+  margin-left: 7px;
+  margin-top: -0.6%;
 }
 
 .mn-map-inner { 
@@ -143,36 +143,38 @@ body {
   height: 150%;
   width: 115%;
   overflow: hidden;
-  
-  -ms-transform: scale(1.07);
-  -moz-transform: scale(1.07);
-  -o-transform: scale(1.07);
-  -webkit-transform: scale(1.07);
-  transform: scale(1.07);
-
-  -ms-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -o-transform-origin: 0 0;
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-  
 }
 
-.aqi-trends { 
+#aqi-trends { 
   position: absolute;
   top: 10px;
   left: 37.5%;
-  margin-top: 0px;
-  width:62%;
+  margin-top: 0;
+  width: 61.6%;
   height: 85%;
   z-index: 5;
 }
 
-.aqi-history { 
+.slides { 
+  position: absolute; 
+  width: 100%; 
+  height: 100%;
+  top:  0px; 
+  left: 4px; 
+} 
+
+.city_titles {position: relative; margin-bottom: 3%;}
+
+.o3_trends {position: relative; margin-bottom: 3%;}
+
+.pm_trends {position: relative; margin-bottom: 3%;}
+
+
+.aqi_history { 
   position: absolute;
-  top: 15px;
+  top: 10px;
   left: 48%;
-  margin-top: 0px;
+  margin-top: 0;
   width:43%;
   height: 87%;
   z-index: 5;
@@ -185,11 +187,11 @@ body {
     overflow: hidden; 
     z-index: -3;
     
-    -ms-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -ms-transform: scale(1.17);
+    -moz-transform: scale(1.17);
+    -o-transform: scale(1.17);
+    -webkit-transform: scale(1.17);
+    transform: scale(1.17);
 
     -ms-transform-origin: 0 0;
     -moz-transform-origin: 0 0;
@@ -197,52 +199,6 @@ body {
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
 }
-
-.airnow
-{
-    border: 0;
-    overflow: hidden; 
-    z-index: -3;
-    
-    -ms-transform: scale(.89);
-    -moz-transform: scale(.89);
-    -o-transform: scale(.89);
-    -webkit-transform: scale(.89);
-    transform: scale(.89);
-    
-    -ms-transform-origin: 0 0;
-    -moz-transform-origin: 0 0;
-    -o-transform-origin: 0 0;
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-}
-
-
-.slides {position: relative;}
-
-#city-titles { position: relative; }
-
-#city-titles > div { 
-  position: absolute; 
-  top:  0px; 
-  left: 0px;
-} 
-
-#o3-trends { position: relative; }
-
-#o3-trends > div { 
-  position: absolute; 
-  top:  -4px; 
-  left: 4px; 
-} 
-
-#pm_trends { position: relative; }
-
-#pm-trends > div { 
-  position: absolute; 
-  top: 66.5%; 
-  left: 4px; 
-} 
 
 
 #haze-cams { 
@@ -288,13 +244,13 @@ body {
 
 .max-aqi {
   position: absolute; 
-  top:  -26px; 
-  left: 89%;
-  width: 30%; 
+  top:  -27px; 
+  left: 90%;
+  width: 31%; 
   height: 100%;
   text-align: center;
   z-index: 9999;
-  line-height: 205%;
+  line-height: 208%;
   font-size: 1.48em;
   font-weight: 700;
 }

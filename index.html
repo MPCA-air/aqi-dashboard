@@ -110,7 +110,7 @@ $(document).ready(function () {
 </script>
 <div class="box left">
 <div class="inner">
-<p><span class="titles">NATIONAL </span><span class="titles sub">Today's air quality </span></p>
+<p><span class="titles">Today's air quality</span><span class="titles sub">Time lapse</span></p>
 <div class="us-map">
 <div style="us-map-inner">
 <p><img src   = "https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" title="U.S. AQI Animation" 
@@ -121,7 +121,7 @@ $(document).ready(function () {
 </div>
 <div class="box left-low">
 <div class="inner">
-<p><span class="titles">MINNESOTA</span> <span class="titles sub">Visibility</span></p>
+<p><span class="titles">MINNESOTA</span> <span class="titles sub">Visibility cameras</span></p>
 <div id="haze-cams">
 <div class="haze-slides">
 <div class="image">
@@ -336,7 +336,7 @@ Grand Portage
 </div>
 <div class="box right">
 <div class="inner">
-<p><span class="titles">MINNESOTA</span> <span class="titles sub">Current air quality</span></p>
+<p><span class="titles">Current</span><span class="titles sub">Air monitor results</span></p>
 <div style="height: 1%;">
 
 </div>
@@ -346,47 +346,46 @@ Grand Portage
 </iframe>
 </div>
 </div>
-<div class="aqi-trends">
-<div id="city-titles">
+<div id="aqi-trends">
+<div class="slides">
+<div class="city_titles">
+<span class="titles">Rochester</span><span class="titles sub">Hourly observations</span>
+</div>
+<div class="o3_trends">
 <div>
-<p><span class="titles slides"> ROCHESTER</span><span class="titles sub slides">Today's air quality</span></p>
-</div>
-<div>
-<p><span class="titles slides"> TWIN CITIES</span> <span class="titles sub slides"> Today's air quality</span></p>
-</div>
-<div>
-<p><span class="titles slides"> DULUTH</span> <span class="titles sub slides"> Today's air quality</span></p>
-</div>
-</div>
-<div style="margin-left: 0; margin-top: 11%; margin-bottom: 0px;">
 <p class="titles sub" style="font-weight: bold;">
 Ozone
 </p>
-<div id="o3-trends">
+<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
+</div>
+</div>
+<div class="pm_trends">
 <div>
-<p><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"> <img class="circle" style="left: -196px; top: 324px;" src="images/circle2-copy.png"></p>
-</div>
-<div>
-<p><img class="slides" src = "https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart2.gif"> <img class="circle" style="left: -232px; top: 258px;" src="images/circle2.png"></p>
-</div>
-<div>
-<p><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"> <img class="circle" style="left: -180px; top: 128px;" src="images/circle2-copy.png"></p>
-</div>
-</div>
-</div>
-<div style="margin-left: 0; margin-top: 24%; margin-bottom: 5px;">
 <p class="titles sub" style="font-weight: bold;">
 PM2.5
 </p>
-<div id="pm-trends">
-<div>
-<img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
+<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
 </div>
-<div>
-<img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart2.gif">
 </div>
+</div>
+<div class="slides">
+<div class="city_titles">
+<span class="titles">Rochester</span><span class="titles sub">Hourly observations</span>
+</div>
+<div class="o3_trends">
 <div>
-<img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
+<p class="titles sub" style="font-weight: bold;">
+Ozone
+</p>
+<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
+</div>
+</div>
+<div class="pm_trends">
+<div>
+<p class="titles sub" style="font-weight: bold;">
+PM2.5
+</p>
+<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
 </div>
 </div>
 </div>
@@ -395,21 +394,22 @@ PM2.5
 </div>
 <div class="box right-low">
 <div class="inner">
-<p><span class="titles">MINNESOTA</span> <span class="titles sub">Air quality forecasts</span></p>
+<p><span class="titles">Forecasts</span><span class="titles sub">Tomorrow and next day</span></p>
 <div class="forecast-map">
 <p><span class="titles sub" style="margin-left: 4px;"> Thursday </span> <img src="images/forecast_map_day1.png" style="border: 1px solid #a5a9ac; margin-left: 4px; margin-top:4px;"></p>
 </div>
 <div class="forecast-map">
 <p><span class="titles sub" style="margin-left: 4px;"> Friday </span> <img src="images/forecast_map_day2.png" style="border: 1px solid #a5a9ac; margin-left: 4px; margin-top:4px;"></p>
 </div>
-<div class="aqi-history">
+<div class="aqi_history">
 <div>
-<p><span class="titles slides"> 2017</span><span class="titles sub">Count of AQI days by color</span></p>
+<span class="titles">History</span><span class="titles sub">AQI days in 2017</span>
 </div>
 <div id="aqi-days" style="margin-top: 3%;&gt;
+
 &lt;div class = " day-slides"="">
 <div class="day-slides">
-<img src = "images/history1.png" width="95%">
+<img src = "images/history1.png" width="97%">
 <div class="max-aqi">
 <div class="max-title">
 Max AQI
@@ -437,7 +437,7 @@ Max AQI
 </div>
 </div>
 <div class="day-slides">
-<img src = "images/history2.png" width="95%">
+<img src = "images/history2.png" width="97%">
 <div class="max-aqi">
 <div class="max-title">
 Max AQI
@@ -465,7 +465,7 @@ Max AQI
 </div>
 </div>
 <div class="day-slides">
-<img src = "images/history3.png" width="95%">
+<img src = "images/history3.png" width="97%">
 <div class="max-aqi">
 <div class="max-title">
 Max AQI
@@ -493,7 +493,7 @@ Max AQI
 </div>
 </div>
 <div class="day-slides">
-<img src = "images/history4.png" width="95%">
+<img src = "images/history4.png" width="97%">
 <div class="max-aqi">
 <div class="max-title">
 Max AQI

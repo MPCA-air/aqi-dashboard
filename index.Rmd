@@ -56,6 +56,42 @@ bloom_sites <- read.csv("data/Bloom Sky site list.csv", stringsAsFactors = F)
 # Clean city name
 bloom_sites$city <- gsub("[.]", "", bloom_sites$city)
 
+
+
+# Site hourly observations
+trend_sites <- c("Rochester", "State Fair", "Duluth", "Marshall")
+
+print_day_trend <- function(trend_sites = "Rochester") {
+  
+  for(site in trend_sites) {
+  
+    p <- paste0(c('<div class = "slides">',
+                 '<div class = "city_titles">',
+                 '<span class = "titles">', 'Rochester', '</span>', #toupper(site),
+                 '<span class="titles sub">Hourly observations</span>',
+                 '</div>',
+                 
+                 '<div class = "o3_trends">',
+                 '<div><p class= "titles sub" style="font-weight: bold;">Ozone</p>',
+                 '<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart', site, '.gif">',
+                 '</div>',
+                 '</div>',
+                 
+                 '<div class = "pm_trends">',
+                 '<div><p class= "titles sub" style="font-weight: bold;">PM2.5</p>',
+                 '<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart', site, '.gif">',
+                 '</div>',
+                 '</div>',
+                 
+                 '</div>'), 
+                 collapse = "")
+    
+    cat(p)
+  }
+}
+
+
+
 # Site AQI max for 2017
 site_max <- read_csv("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Verification//AQI History//2017_site_max_aqi.csv")
 
@@ -68,7 +104,7 @@ print_max <- function(slide_num = 1, aqi_vals = 100) {
   colors   <- site_max$aqi_color[(x+1):(x+6)]
   
   cat(paste0(c('<div class = "day-slides">',
-             '<img src = "images/history',   slide_num, '.png" width="95%">',
+             '<img src = "images/history',   slide_num, '.png" width="97%">',
              '<div class = "max-aqi">', 
              '<div class ="max-title">Max AQI</div>',
              '<div>', 
@@ -91,9 +127,7 @@ print_max <- function(slide_num = 1, aqi_vals = 100) {
 <div class = "box left">
 <div class = "inner">
 
-<span class = "titles">NATIONAL 
-</span><span class= "titles sub">Today&#39;s air quality 
-</span>
+<span class = "titles">Today&#39;s air quality</span><span class= "titles sub">Time lapse</span>
 
 <div class = "us-map">
 <div style = "us-map-inner">           
@@ -109,7 +143,7 @@ print_max <- function(slide_num = 1, aqi_vals = 100) {
 <div class = "inner">
 
 <span class = "titles">MINNESOTA</span>
-<span class = "titles sub">Visibility</span>
+<span class = "titles sub">Visibility cameras</span>
 
 <div id = "haze-cams">
 
@@ -144,82 +178,35 @@ for(i in unique(bloom_sites$group)[]) {
 <div class = "box right">
 <div class = "inner">
  
-
-<span class = "titles">MINNESOTA</span>
-<span class = "titles sub">Current air quality</span>
+<span class = "titles">Current</span><span class = "titles sub">Air monitor results</span>
 
 <div style = "height: 1%;"></div>
 <div class = "mn-map"> 
 <div class = "mn-map-inner"> 
-<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap" frameborder="0" 
-style="width: 98%; height: 95%; margin-left: -68px; margin-bottom: -85%;"></iframe>
+
+<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap" frameborder="0" style="width: 98%; height: 95%; margin-left: -68px; margin-bottom: -85%;"></iframe>
 
 </div></div>
 
 
 
-<div class = "aqi-trends"> 
+<div id = "aqi-trends"> 
+```{r aqi-trends, echo = FALSE, results = 'asis'}
 
-<div id = "city-titles">
-
-<div><span class = "titles slides">
-ROCHESTER</span><span class= "titles sub slides">Today&#39;s air quality</span>
+print_day_trend("") 
+print_day_trend("") 
+```
 </div>
 
-<div><span class = "titles slides">
-TWIN CITIES</span> <span class= "titles sub slides">
-Today&#39;s air quality</span>
-</div>
-
-<div><span class = "titles slides">
-DULUTH</span> <span class= "titles sub slides">
-Today&#39;s air quality</span>
-</div>
-
-</div>
-
-
-<div style="margin-left: 0; margin-top: 11%; margin-bottom: 0px;">
-<p class= "titles sub" style="font-weight: bold;"> Ozone </p>
-
-<div id = "o3-trends">
-
-<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
-<img class="circle" style="left: -196px; top: 324px;" src="images/circle2-copy.png">
-</div>
-
-<div><img class="slides" src = "https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart2.gif">
-<img class="circle" style="left: -232px; top: 258px;" src="images/circle2.png">
-</div>
-
-<div><img class="slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif">
-<img class="circle" style="left: -180px; top: 128px;" src="images/circle2-copy.png">
-</div>
-
-</div>
-</div>
-
-
-<div style ="margin-left: 0; margin-top: 24%; margin-bottom: 5px;">
-<p class = "titles sub" style ="font-weight: bold;">PM2.5</p>
-
-<div id = "pm-trends">
-<div><img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
-<div><img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart2.gif"></div>
-<div><img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
-</div>
-</div>
-
-</div>
 
 </div> </div>
             
 
+
 <div class="box right-low">
 <div class="inner">
             
-<span class="titles">MINNESOTA</span>
-<span class="titles sub">Air quality forecasts</span>
+<span class="titles">Forecasts</span><span class="titles sub">Tomorrow and next day</span>
 
 <div class = "forecast-map">
 <span class= "titles sub" style="margin-left: 4px;"> 
@@ -240,13 +227,12 @@ Today&#39;s air quality</span>
 ```
 
 
-<div class = "aqi-history"> 
+<div class = "aqi_history"> 
 
-<div><span class = "titles slides">
-2017</span><span class= "titles sub">Count of AQI days by color</span>
-</div>
+<div><span class = "titles">History</span><span class= "titles sub">AQI days in 2017</span></div>
 
 <div id = "aqi-days" style="margin-top: 3%;>
+
 ```{r max_aqis, echo = FALSE, results = 'asis'}
 
 for(i in 1:4) { print_max(i) }
