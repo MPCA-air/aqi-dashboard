@@ -221,14 +221,14 @@ Today&#39;s air quality</span>
 <span class="titles sub">Air quality forecasts</span>
 
 <div class = "forecast-map">
-<span class= "titles sub" style="margin-left: 0px;"> 
+<span class= "titles sub" style="margin-left: 4px;"> 
 `r weekdays(Sys.Date() + 1)` 
 </span>
 <img src="images/forecast_map_day1.png" style="border: 1px solid #a5a9ac; margin-left: 4px; margin-top:4px;">
 </div>
 
 <div class = "forecast-map">
-<span class= "titles sub" style="margin-left: 0px;"> 
+<span class= "titles sub" style="margin-left: 4px;"> 
 `r weekdays(Sys.Date() + 2)` 
 </span>
 <img src="images/forecast_map_day2.png" style="border: 1px solid #a5a9ac; margin-left: 4px; margin-top:4px;">
@@ -242,8 +242,7 @@ Today&#39;s air quality</span>
 <div class = "aqi-history"> 
 
 <div><span class = "titles slides">
-2017 </span> <span class= "titles sub slides">
-Count of days by AQI color</span>
+2017</span><span class= "titles sub">Count of days by AQI color</span>
 </div>
 
 <div id = "aqi-days">

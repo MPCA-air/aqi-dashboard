@@ -99,11 +99,11 @@ for(f_day in 1:2) {
           mutate(max_aqi = max(aqi_o3, aqi_pm, na.rm = T))
   
   # Random data
-  data$max_aqi <- sample(1:170, nrow(data))
+  #data$max_aqi <- sample(1:120, nrow(data))
   
   # Set circle size
   data$circle_size <- ifelse(grepl("Metro", data$group) |  
-                                 data$group == "MSP", 8, 10) 
+                                 data$group == "MSP", 8, 9.5) 
   
   # Isopleths
   #X     <- cbind(data$long, data$lat)

@@ -92,7 +92,7 @@ print_max <- function(slide_num = 1, aqi_vals = 100) {
 <div class = "inner">
 
 <span class = "titles">NATIONAL 
-</span><span class= "titles sub"> Today&#39;s air quality 
+</span><span class= "titles sub">Today&#39;s air quality 
 </span>
 
 <div class = "us-map">
@@ -145,12 +145,12 @@ for(i in unique(bloom_sites$group)[]) {
 <div class = "inner">
  
 
-<span class = "titles">MINNESOTA </span>
+<span class = "titles">MINNESOTA</span>
 <span class = "titles sub">Current air quality</span>
 
 <div class = "mn-map"> 
 <div class = "mn-map-inner"> 
-<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap" frameborder="0" style="width: 98%; height: 99%; margin-left:-35px; margin-bottom: -490px; "></iframe>
+<iframe class = "map" src="https://mpca.sonomatechdata.com/reportingarea/contourMap" frameborder="0" style="width: 98%; height: 90%; margin-left: -15px; margin-bottom: -85%; "></iframe>
 
 </div></div>
 
@@ -161,17 +161,16 @@ for(i in unique(bloom_sites$group)[]) {
 <div id = "city-titles">
 
 <div><span class = "titles slides">
-ROCHESTER </span> <span class= "titles sub slides">
+ROCHESTER</span><span class= "titles sub slides">Today&#39;s air quality</span>
+</div>
+
+<div><span class = "titles slides">
+TWIN CITIES</span> <span class= "titles sub slides">
 Today&#39;s air quality</span>
 </div>
 
 <div><span class = "titles slides">
-TWIN CITIES </span> <span class= "titles sub slides">
-Today&#39;s air quality</span>
-</div>
-
-<div><span class = "titles slides">
-DULUTH </span> <span class= "titles sub slides">
+DULUTH</span> <span class= "titles sub slides">
 Today&#39;s air quality</span>
 </div>
 
@@ -200,7 +199,7 @@ Today&#39;s air quality</span>
 
 
 <div style ="margin-left: 0; margin-top: 170px; margin-bottom: 5px;">
-<p class = "titles sub" style ="font-weight: bold;"> PM2.5 </p>
+<p class = "titles sub" style ="font-weight: bold;">PM2.5</p>
 
 <div id = "pm-trends">
 <div><img class = "slides" src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart.gif"></div>
@@ -242,7 +241,7 @@ Today&#39;s air quality</span>
 <div class = "aqi-history"> 
 
 <div><span class = "titles slides">
-2017</span><span class= "titles sub">Count of days by AQI color</span>
+2017</span><span class= "titles sub">Count of AQI days by color</span>
 </div>
 
 <div id = "aqi-days">

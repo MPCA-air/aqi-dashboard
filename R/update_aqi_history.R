@@ -5,6 +5,7 @@ extrafont::loadfonts(device="win")
 #extrafont::font_import() 
 #import_roboto_condensed()
 library(ggplot2)
+library(tidyr)
 library(dplyr)
 library(readr)
 library(hrbrthemes)
@@ -132,7 +133,7 @@ for(i in 1:4) {
   
   
   # Plot colors
-  plot_colors <- c("#9BF59B","#ff7e00","#ffff00")[c(T, "aqi_orange" %in% sub_data$aqi_color, "aqi_yellow" %in% sub_data$aqi_color)]
+  plot_colors <- c("#53BF33","#DB6B1A","#FFEE00")[c(T, "aqi_orange" %in% sub_data$aqi_color, "aqi_yellow" %in% sub_data$aqi_color)]
   
   text_colors <- c("white","grey50","grey50")[c(T, "aqi_orange" %in% sub_data$aqi_color, "aqi_yellow" %in% sub_data$aqi_color)]
  
@@ -144,9 +145,10 @@ for(i in 1:4) {
   # Days chart
   day_chart <-
     ggplot(sub_data, aes(hist_name, aqi_days_bump)) +
-      geom_bar(stat="identity", aes(fill = aqi_color), position = position_stack(reverse = F)) +
-      geom_text(size = 3.7, fontface = "bold", aes(label = ifelse(aqi_color %in% c("aqi_green", "aqi_yellow"), aqi_label, ""),
-                                y = aqi_pos, color= aqi_color)) +
+      geom_bar(stat="identity", aes(fill = aqi_color), position = position_stack(reverse = F), alpha = 0.74) +
+      geom_text(size = 3.7, fontface = "bold", 
+                aes(label = ifelse(aqi_color %in% c("aqi_green", "aqi_yellow"), aqi_label, ""),
+                    y = aqi_pos, color= aqi_color)) +
       coord_flip() +
       theme_ipsum(grid="X", base_size = 10) +
       scale_fill_manual(values  = plot_colors) +
@@ -175,7 +177,7 @@ for(i in 1:4) {
   if(F) {
     pct_chart <- 
       ggplot(sub_data, aes(hist_name, aqi_days_pct)) +
-      geom_bar(stat="identity", aes(fill = aqi_color), position = position_stack(reverse = T)) +
+      geom_bar(stat="identity", aes(fill = aqi_color), position = position_stack(reverse = T), alpha = 0.74) +
       geom_text(size = 3, aes(label = ifelse(aqi_color == "aqi_green", paste0(sprintf("%.0f", aqi_days_pct*100),"%"),""),
                               y = (1 - 0.52 * aqi_days_pct)), color= "white") +
       coord_flip() +
