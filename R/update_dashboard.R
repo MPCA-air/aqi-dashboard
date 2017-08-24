@@ -42,6 +42,5 @@ if(current_hour > 6 & current_hour < 22) {
   push <- paste0(git, "push -f origin master")
     
   shell(push)
-  }
   
 }

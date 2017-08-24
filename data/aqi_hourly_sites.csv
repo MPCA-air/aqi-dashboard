@@ -1,0 +1,22 @@
+hist_name,param,time,row,aqi,aqs_id
+Anoka (N-Metro),ozone,12,12,23,270031002
+Bethel (N-Metro),ozone,12,12,25,270031001
+Brainerd,ozone,12,12,25,270353204
+Detroit Lakes,ozone,12,12,22,270052013
+Duluth,ozone,12,12,18,271377550
+Ely,ozone,12,12,26,270750005
+Fargo-Moorhead,ozone,12,12,17,380171004
+Fond Du Lac,ozone,12,12,20,270177417
+Grand Portage,pm,12,12,1,270317810
+Marshall,ozone,12,12,31,270834210
+Mille Lacs,ozone,12,12,23,270953051
+Rochester,ozone,12,12,21,271095008
+Shakopee (SE-Metro),ozone,12,12,21,271390505
+South Metro,ozone,12,12,19,270495302
+St-Cloud,ozone,12,12,22,271453052
+St-Croix (E-Metro),ozone,12,12,24,271636016
+St-Michael (W-Metro),ozone,12,12,23,271713201
+State Fair,ozone,12,12,13,270530962
+Virginia,pm,12,12,1,271377001
+Voyageurs NP,ozone,12,12,25,271370034
+Winona-LaCrosse,ozone,12,12,26,550630012
