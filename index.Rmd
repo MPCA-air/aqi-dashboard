@@ -189,7 +189,7 @@ for(i in unique(bloom_sites$group)[]) {
 
 trend_sites <- read_csv("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Web//aqi-dashboard//data//aqi_hourly_sites.csv")$hist_name
 
-trend_sites <- c("State Fair", trend_sites[!grepl("State Fair", trend_sites)])
+trend_sites <- c("State Fair", trend_sites[!grepl("State Fair", trend_sites)][c(1,3:5,2,6:9,10:12,14:15)])
 
 
 for(site_x in unique(trend_sites)) {

@@ -163,7 +163,7 @@ param_x <- aqi$param[1]
 
 start_tm <- Sys.time()
 
-for(site_x in c("State Fair", unique(aqi$hist_name)[!grepl("State Fair", unique(aqi$hist_name))])[c(1:5,10:15)]) {
+for(site_x in c("State Fair", unique(aqi$hist_name)[!grepl("State Fair", unique(aqi$hist_name))])[c(1,3:5,2,6:9,10:12,14:15)]) {
   
   print(Sys.time() - start_tm)
   
