@@ -111,7 +111,7 @@ aqi[grepl("Minneap", aqi$site) | grepl("Paul", aqi$site), ]$site <- "Minneapolis
 aqi[grepl("Duluth", aqi$site), ]$site <- "Duluth"
 
 aqi <- group_by(aqi, site, param, time, row) %>%
-       summarize(aqi    = mean(aqi, na.rm = T),
+       summarize(aqi    = round(mean(aqi, na.rm = T)),
                  aqs_id = max(aqs_id, na.rm=T)) %>%
        ungroup()
 
@@ -141,7 +141,7 @@ aqi[aqi$site == "Minneapolis", ]$hist_name <- "State Fair"
 aqi[grepl("S-Metro", aqi$hist_name), ]$hist_name <- "South Metro"
 
 aqi <- group_by(aqi, hist_name, param, time, row) %>%
-       summarize(aqi    = mean(aqi, na.rm = T),
+       summarize(aqi    = round(mean(aqi, na.rm = T)),
                  aqs_id = max(aqs_id, na.rm=T)) %>%
        ungroup()
 
