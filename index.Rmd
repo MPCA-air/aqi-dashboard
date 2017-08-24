@@ -57,29 +57,24 @@ bloom_sites <- read.csv("data/Bloom Sky site list.csv", stringsAsFactors = F)
 bloom_sites$city <- gsub("[.]", "", bloom_sites$city)
 
 
-
 # Site hourly observations
-trend_sites <- c("Rochester", "State Fair", "Duluth", "Marshall")
-
-print_day_trend <- function(trend_sites = "Rochester") {
-  
-  for(site in trend_sites) {
+print_day_trend <- function(site = "Rochester") {
   
     p <- paste0(c('<div class = "slides">',
                  '<div class = "city_titles">',
-                 '<span class = "titles">', 'Rochester', '</span>', #toupper(site),
+                 '<span class = "titles">', site, '</span>', 
                  '<span class="titles sub">Hourly observations</span>',
                  '</div>',
                  
                  '<div class = "o3_trends">',
                  '<div><p class= "titles sub" style="font-weight: bold;">Ozone</p>',
-                 '<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart', site, '.gif">',
+                 '<img src="images/ozone_chart_', site, '.gif">',
                  '</div>',
                  '</div>',
                  
                  '<div class = "pm_trends">',
                  '<div><p class= "titles sub" style="font-weight: bold;">PM2.5</p>',
-                 '<img src="https://raw.githubusercontent.com/MPCA-air/aqi-trends/master/ozone_chart', site, '.gif">',
+                 '<img src="images/pm_chart_', site, '.gif">',
                  '</div>',
                  '</div>',
                  
@@ -87,7 +82,6 @@ print_day_trend <- function(trend_sites = "Rochester") {
                  collapse = "")
     
     cat(p)
-  }
 }
 
 
@@ -147,7 +141,7 @@ print_max <- function(slide_num = 1, aqi_vals = 100) {
 
 <div id = "haze-cams">
 
-```{r haze-cams, echo = FALSE, results = 'asis'}
+```{r haze-cams, echo = FALSE, results = 'asis', message=F, warning=F}
 
 for(i in unique(bloom_sites$group)[]) {
   
@@ -191,10 +185,17 @@ for(i in unique(bloom_sites$group)[]) {
 
 
 <div id = "aqi-trends"> 
-```{r aqi-trends, echo = FALSE, results = 'asis'}
+```{r aqi-trends, echo = FALSE, results = 'asis', message=F, warning=F}
 
-print_day_trend("") 
-print_day_trend("") 
+trend_sites <- read_csv("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Web//aqi-dashboard//data//aqi_hourly_sites.csv")$hist_name
+
+trend_sites <- c("State Fair", trend_sites[!grepl("State Fair", trend_sites)])
+
+
+for(site_x in unique(trend_sites)) {
+  print_day_trend(site_x) 
+}
+
 ```
 </div>
 
@@ -233,7 +234,7 @@ print_day_trend("")
 
 <div id = "aqi-days" style="margin-top: 3%;>
 
-```{r max_aqis, echo = FALSE, results = 'asis'}
+```{r max_aqis, echo = FALSE, results = 'asis', message=F, warning=F}
 
 for(i in 1:4) { print_max(i) }
 ```

@@ -4,176 +4,214 @@ library(ggplot2)
 library(dplyr)
 library(readr)
 library(magick)
+library(tidyr)
 
 #require(installr) 
 #install.ImageMagick()
 
-
 # AQI color functions
 setwd("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//")
+
 source("Web/aqi-watch/R/aqi_convert.R")
 
 # Load credentials
 creds <- read_csv("C:/Users/dkvale/Desktop/credentials.csv")
 
-
-# Check time
-#format(Sys.time(), "%H")
-
+# Size adjustment
 size_adjust <- 0.63
 
-setwd("C:/Users/dkvale/Desktop/State_Fair_2016/Color_chart")
+
+# Current hour
+current_hr <- as.numeric(format(Sys.time() - 42 * 60, "%H"))
 
 
-# Load today's AQI values
-aqi_test <- read_csv("row, time, time_txt, aqi
-                     0,0,0am, NA
-                     1,23,11pm, 22
-                     2,2,2am, 33
-                     3,3,3am, 28
-                     4,4,4am, 55
-                     5,5,5am, 66
-                     6,6,6am, 58
-                     7,7,7am, 75
-                     8,8,8am, 88
-                     9,9,9am, 99
-                     10,10,10am, 95
-                     11,11,11am, 108
-                     12,12,12pm, 118
-                     13,13,1pm, NA")
-
-
-# Load forecasts from AirNow
+# Load most recent forecasts from AirNow
 aqi_o3 <- readLines(paste0("ftp://", creds$user, ":", creds$pwd, "@ftp.airnowapi.org/ObsFiles/today_ozone.obs"))
-
 aqi_pm <- readLines(paste0("ftp://", creds$user, ":", creds$pwd, "@ftp.airnowapi.org/ObsFiles/today_pmfine.obs"))
 
-# Trim data to hourly observations
-aqi_o3 <- aqi_o3[grep("BEGIN_DATA", aqi_o3)[1]:grep("END_DATA", aqi_o3)[1]] 
 
-aqi_pm <- aqi_pm[grep("BEGIN_DATA", aqi_pm)[1]:grep("END_DATA", aqi_pm)[1]] 
+# Trim data to hourly observations
+aqi_o3 <- aqi_o3[(1+grep("BEGIN_DATA", aqi_o3)[1]):(1+grep("END_DATA", aqi_o3)[1])] 
+aqi_pm <- aqi_pm[(1+grep("BEGIN_DATA", aqi_pm)[1]):(1+grep("END_DATA", aqi_pm)[1])]
 
 
 # Store in data frame
-aqi      <- gsub("[|]", ",", aqi_forc)
+aqi_o3  <- gsub("[|]", ",", aqi_o3)
+aqi_pm  <- gsub("[|]", ",", aqi_pm)
 
-aqi_forc <- read_csv(paste0(aqi_forc, collapse = "\n"), col_names = F)
+aqi_o3 <- read_csv(paste0(aqi_o3, collapse = "\n"), col_names = F)
+aqi_pm <- read_csv(paste0(aqi_pm, collapse = "\n"), col_names = F)
 
 
 # Set names
-names(aqi_o3) <- c("Site", "aqs_id", 0:(ncol(aqi)-1)) 
+names(aqi_o3) <- c("site", "aqs_id", 0:(ncol(aqi_o3)-3)) 
+names(aqi_pm) <- c("site", "aqs_id", 0:(ncol(aqi_pm)-3)) 
 
-names(aqi_pm) <- c("Site", "aqs_id", 0:(ncol(aqi)-1)) 
 
 # Add param, date, and units
-"date_issued"
-"date_forecast"
-"time_forecast"
+aqi_o3$param <- "ozone"
+aqi_pm$param <- "pm"
 
 
 # Join parameters
 aqi <- bind_rows(aqi_pm, aqi_o3)
 
+
 # Filter sites
-aqi_forc <- filter(aqi_forc, state %in% c("MN","WI","ND"))
+aqi <- filter(aqi, 
+              substring(aqs_id, 1,2) %in% "27" | 
+                site %in% c("Fargo NW", "LACROSSE DOT"),
+              !is.na(as.numeric(`0`)))
 
-unique(aqi_forc$Site)
+unique(aqi$site)
 
-new_time_24 <- as.integer(format(strptime(new_time, "%I:%M %p"), "%H"))
+# Limit to 12 observations
+start_col <- max(0, current_hr - 11) + 3
 
-if(new_time_24 != aqi_old[13, ]$time) {
+aqi <- aqi[ , c(1,2,ncol(aqi), start_col:(start_col + 11))]
+
+
+# Flip to tall format
+aqi <- gather(aqi, key = time, value = aqi, -site, -aqs_id, -param, na.rm = FALSE)
+
+
+# Replace -999's and extreme values with NAs
+aqi <- aqi %>%
+       rowwise() %>%
+       mutate(aqi = as.numeric(aqi),
+              aqi = ifelse(aqi < -99, NA, aqi),
+              aqi = ifelse(aqi < 1, 1, aqi),
+              aqi = ifelse(aqi > 499, NA, aqi),
+              aqi = ifelse(aqi > 300, 300, aqi))
+
+
+# Add time and row columns
+aqi$aqi  <- as.integer(aqi$aqi)
+
+aqi$time <- as.integer(aqi$time)
+
+aqi$row  <- 12
+
+
+# Background colors
+aqi_refs <- data.frame(xstart = c(seq(0,150,50), 200, 300),
+                       xend   = c(seq(50,200,50), 300, 500),
+                       col    = c("#53BF33", "#F4C60B", "#DB6B1A", "#c81d25", "#52154E", "#4c061d"), 
+                       stringsAsFactors = F)
+    
+aqi_refs$col <- factor(aqi_refs$col, ordered = T, levels = aqi_refs$col)
   
-  twin_cities <- grep("Twin", aqi_new)
+
+# Drop irregular sites
+aqi <- filter(aqi, !site %in% c("Stanton", "Red Lake Nation"))
+
+# Consolidate Minneapolis and Duluth sites
+aqi[grepl("Minneap", aqi$site) | grepl("Paul", aqi$site), ]$site <- "Minneapolis"
+
+aqi[grepl("Duluth", aqi$site), ]$site <- "Duluth"
+
+aqi <- group_by(aqi, site, param, time, row) %>%
+       summarize(aqi    = mean(aqi, na.rm = T),
+                 aqs_id = max(aqs_id, na.rm=T)) %>%
+       ungroup()
+
+# Join public site names
+pub_names <- read_csv("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Verification/AQI History/Names for history charts.csv")
+
+sites_aqs <- read_csv("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff folders/Dorian/AQI/MET data/Monitors and Rep Wx Stations.csv")
+
+names(sites_aqs) <- gsub(" ", "_", tolower(names(sites_aqs)))
+
+names(sites_aqs)[grepl("site_catid", names(sites_aqs))] <- "aqs_id"
+
+sites_aqs$aqs_id <- gsub("-", "", sites_aqs$aqs_id )
+
+pub_names <- left_join(pub_names, select(sites_aqs, short_name, aqs_id))
+
+aqi <- left_join(aqi, pub_names)
+
+
+# Update missing public names
+aqi[aqi$site == "Voyageurs NP", ]$hist_name <- "Voyageurs NP"
+aqi[aqi$site == "Duluth", ]$hist_name <- "Duluth"
+aqi[aqi$site == "Minneapolis", ]$hist_name <- "State Fair"
+
+
+# Group South metro area
+aqi[grepl("S-Metro", aqi$hist_name), ]$hist_name <- "South Metro"
+
+aqi <- group_by(aqi, hist_name, param, time, row) %>%
+       summarize(aqi    = mean(aqi, na.rm = T),
+                 aqs_id = max(aqs_id, na.rm=T)) %>%
+       ungroup()
+
+
+
+# Save site list
+write_csv(aqi[!duplicated(aqi$hist_name), ], "X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Web//aqi-dashboard//data//aqi_hourly_sites.csv")
+
+
+
+# Prep for plot loop
+setwd("C:/Users/dkvale/Desktop/aqi/trend_charts/")
+
+par(mar=c(0,0,0,0))
+
+site_x  <- aqi$hist_name[1]
+
+param_x <- aqi$param[1]
+
+start_tm <- Sys.time()
+
+for(site_x in c("State Fair", unique(aqi$hist_name)[!grepl("State Fair", unique(aqi$hist_name))])[c(1:5,10:15)]) {
   
-  new_ozone <-  grep("cc_ozone_cell", aqi_new) %>%
-    .[. > twin_cities] %>%
-    aqi_new[.] %>%
-    strsplit(. , ">") %>% 
-    unlist(.) %>% 
-    .[2] %>%
-    gsub("<[///]div", "", .) %>%
-    as.numeric()
+  print(Sys.time() - start_tm)
   
+  print(site_x)
   
-  new_pm25 <-  grep("cc_pm_cell", aqi_new) %>%
-    .[. > twin_cities] %>%
-    aqi_new[.] %>%
-    strsplit(. , ">") %>% 
-    unlist(.) %>% 
-    .[2] %>%
-    gsub("<[///]div", "", .) %>%
-    as.numeric()
+  aqi_site <- filter(aqi, hist_name == site_x) 
   
-  new_value <- max(new_ozone, new_pm25, na.rm=T)
-  
-  # Quality check
-  
-  if(!is.na(new_value)) {
-    
-    ## Set negative values to one
-    if(new_value < 1) new_value <- 1
-    
-    ## Set >499 values to 499
-    if(new_value > 499) new_value <- 499
-    
-    
-# Create table for new data
-aqi_new <- data_frame(time      = new_time_24, 
-                      time_txt  = tolower(gsub(":00", "", new_time)),
-                      aqi       = new_value)
-    
-aqi_new$aqi  <- as.integer(aqi_new$aqi)
-aqi_new$time <- as.integer(aqi_new$time)
-aqi_new$row  <- 12
-    
-aqi_new <- rbind(aqi_old[-c(1, nrow(aqi_old)), ], aqi_new)
-    
-aqi_new[1, ]$aqi <- NA
-    
-aqi_new <- bind_rows(aqi_new, 
-                 data_frame(row      = 13,
-                            time     = as.integer(format(strptime(new_time, "%I:%M %p")+60*60, "%H")),
-                            time_txt = "",
-                            aqi      = NA))
-    
-    aqi_new$row <- 0:13
-    
-    write_csv(aqi_new, "aqi_old.csv")
-    
-    
-    # Create background colors
-    aqi_refs <- data.frame(xstart = c(seq(0,150,50), 200, 300),
-                           xend = c(seq(50,200,50), 300, 500),
-                           col = c("#53BF33", "#F4C60B", "#DB6B1A", "#c81d25", "#52154E", "#4c061d"), 
-                           stringsAsFactors = F)
-    
-    aqi_refs$col <- factor(aqi_refs$col, ordered = T, levels = aqi_refs$col)
-    
-    
-    aqi2 <- aqi_new
-    
-    time_labels <- c("", aqi2$time_txt[-c(1, nrow(aqi2))], "")
-    
-    setwd("charts")
+  for(param_x in unique(aqi_site$param)) {
     
     # Empty chart folder
-    shell("C: & CD C:/Users/dkvale/Desktop/State_Fair_2016/Color_chart/charts/ & del /F /Q *")
+    shell("C: & CD C:/Users/dkvale/Desktop/aqi/trend_charts/ & del /F /Q *")
     
-    img_count <- 0
-    
-    par(mar=c(0,0,0,0))
-    
-    
-    for(i in 2:13){
+    img_count <- 0  
+  
+  # Select site data  
+  aqi2 <- filter(aqi_site, param == param_x) %>%
+          arrange(time)
+  
+  
+  # Limit to last 12 hours
+  aqi2 <- filter(aqi2, time > max(aqi2$time, na.rm = T) - 12)
+  
+  
+  # Add buffer data to extend plot
+  pre_na <- aqi2[1, ] %>% 
+            mutate(time = time - 1, aqi  = NA)
+  
+  post_na <- aqi2[nrow(aqi2), ] %>% 
+             mutate(time = time + 1, aqi  = NA)
+  
+  aqi2 <- bind_rows(pre_na, aqi2, post_na)
+  
+  aqi2$row <- 0:13
+  
+  time_labels <- c("", aqi2$time[-c(1, nrow(aqi2))], "")
+  
+for(i in 2:13) {
       
-      aqi_cut <- aqi2[1:i, ]
+  aqi_cut <- aqi2[1:i, ]
       
-      aqi_last <- aqi2[2:max(c(2, i-1)), ]
+  aqi_last <- aqi2[2:max(c(2, i-1)), ]
       
-      aqi_new <- aqi2[i, ]
+  aqi_new <- aqi2[i, ]
       
-      for(z in seq(1, 37, 2)) {
+  for(z in seq(1, 37, 2)) {
         
+        print(img_count)
+    
         img_count <- img_count + 1
         
         p <- ggplot() +
@@ -184,8 +222,6 @@ aqi_new <- bind_rows(aqi_new,
         # Background line
         p <- p + 
           geom_line(data = aqi2[!is.na(aqi2$aqi), ], aes(x = row, y = aqi), size =1.1*size_adjust, color="grey40", alpha = 0.08) +
-          #geom_line(data = aqi2[!is.na(aqi2$aqi), ], aes(x = time, y = aqi), size =1, color="grey50", alpha = 0.07) +
-          #geom_point(data = aqi2, aes(x = time, y = aqi), color = "grey50", size = 5.7,, alpha = 0.09) +
           geom_point(data = aqi2[!is.na(aqi2$aqi), ], aes(x = row, y = aqi), color = "grey40",  size = 4*size_adjust, alpha = 0.06)
         
         
@@ -288,32 +324,7 @@ aqi_new <- bind_rows(aqi_new,
       image_read() %>%
       image_join() %>%
       image_animate(fps=(20)) %>%
-      image_write("ozone_chart.gif")
+      image_write(paste0("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Web//aqi-dashboard//images//", param_x, "_chart_", site_x, ".gif"))
     
-    
-    # Push to github if afer 7am and before 10pm
-    if(new_time_24 < 22 && new_time_24 > 6) {
-      
-      git <- 'C: & CD "C:/Users/dkvale/Desktop/State_Fair_2016/signup-aqi" & "C:/Users/dkvale/AppData/Local/Programs/Git/bin/git.exe" '
-      
-      
-      shell(paste0('C: & copy "C:/Users/dkvale/Desktop/State_Fair_2016/Color_chart/charts/ozone_chart.gif" ',
-                   '"C:/Users/dkvale/Desktop/State_Fair_2016/signup-aqi/ozone_chart.gif"'))
-      
-      shell(paste0(git, "add ozone_chart.gif"))
-      
-      commit <- paste0(git, 'commit -a -m ', '"update aqi chart"')
-      
-      shell(commit)
-      
-      shell(paste0(git, "config --global user.name dkvale"))
-      shell(paste0(git, "config --global user.email ", credentials$email))
-      shell(paste0(git, "config credential.helper store"))
-      
-      push <- paste0(git, "push -f origin master")
-      #push <- paste0(git, "push -f origin gh-pages")
-      
-      shell(push)
-    }
-    
-  }}
+  }
+  }

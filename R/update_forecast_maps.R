@@ -54,7 +54,6 @@ sites[sites$site_catid == "27-137-9000", "site_catid"] <- sites[sites$site_catid
 forcs <- left_join(forcs, sites)
 
 
-
 # Interpolate regional concentrations across Minnesota
 if(map_grid) {
   data <- forcs

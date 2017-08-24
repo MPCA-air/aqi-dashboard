@@ -2,9 +2,9 @@ $("#aqi-trends > .slides:gt(0)").hide();
 
 setInterval(function() { 
   $('#aqi-trends > .slides:first')
-  .fadeOut(800)
+  .fadeOut(700)
   .next()
-  .fadeIn(800)
+  .fadeIn(700)
   .end()
   .appendTo('#aqi-trends');
-},  10000);
+},  11500);

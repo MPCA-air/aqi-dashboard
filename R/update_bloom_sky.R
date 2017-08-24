@@ -71,6 +71,24 @@ bloom_sites <- bloom_sites %>%
                rowwise() %>%
                mutate(bloom_img = ifelse(is.na(bloom_id), bloom_img, get_bloom_img(bloom_id, phantom_path)))
 
+# Update haze cam sites
+#bloom_sites$web_url <- bloom_sites$bloom_img
+
+#bloom_sites[bloom_sites$city == "Boundary Waters", ]$bloom_img <- "images/boundary_waters.png"
+#bloom_sites[bloom_sites$city == "Grand Portage", ]$bloom_img <- "images/grand_portage.png"
+
+
+## Save to PNG image
+bw_path <- paste0(bloom_sites[bloom_sites$city == "Boundary Waters", ]$web_url)
+gp_path <- paste0(bloom_sites[bloom_sites$city == "Grand Portage", ]$web_url)
+
+
+bw_img <- image_read(img_path)
+gp_img <- image_read(gp_path)
+
+# Save downloaded image
+image_write(bw_img, path = "images/boundary_waters.png", format = "png")
+image_write(gp_img, path = "images/grand_portage.png", format = "png")
 
 # Duplicate St. Paul site to make total divisible by 4
 rownames(bloom_sites) <- 1:nrow(bloom_sites)

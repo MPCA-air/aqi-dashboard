@@ -122,14 +122,7 @@ for(i in 1:4) {
                      hist_name %in% arrange(filter(history, aqi_color == "aqi_yellow"), -aqi_days)$hist_name[(i*6-5):(i*6)]) %>%
               arrange(desc(aqi_color), -aqi_days)
   
-  # Order names by yellow days
-    #nchar(as.character(sub_data$hist_name))
-    #sub_data <- sub_data %>%
-    #           rowwise() %>%
-    #           mutate(hist_name = paste0(hist_name,  paste0(rep("-", 22 - nchar(hist_name)), collapse = "")))
-  
   sub_data$hist_name <- factor(sub_data$hist_name, levels = rev(unique(sub_data$hist_name)))
-  
   
   
   # Plot colors
