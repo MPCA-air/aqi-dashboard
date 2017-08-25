@@ -70,9 +70,9 @@ body {
 
 .us-map {
   width: 99%; 
-  height: 78%;
+  height: 80%
   overflow: hidden;
-  margin-top: 12%;
+  margin-top: 7%;
   margin-left: 6px;
   margin-right: 5px;
   padding-top: 12px;
@@ -91,11 +91,11 @@ body {
 
 
 .mn-map { 
-  width: 95%;
+  width: 93%;
   height: 89%;
   overflow: hidden;
   z-index: 1;
-  margin-left: 10px;
+  margin-left: 8px;
   margin-top: 7px;
 }
 
