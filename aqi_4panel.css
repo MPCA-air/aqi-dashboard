@@ -10,7 +10,7 @@ body {
 
 
 .titles {
-  font-size: 2em; 
+  font-size: 1.8em; 
   background-color: white; 
   font-weight: bold; 
   margin-left: 4px; 
@@ -19,7 +19,7 @@ body {
 }
 
 .sub {
-  font-size: 1.4em; 
+  font-size: 1.3em; 
   font-weight: normal; 
   color: #939393;
 }
@@ -69,11 +69,11 @@ body {
 }
 
 .us-map {
-  width: 98%; 
+  width: 98.7%; 
   height: 92%;
   overflow: hidden;
-  margin-top: -12px;
-  margin-left: 12px;
+  margin-top: -14px;
+  margin-left: 6px;
   margin-right: 5px;
   padding-top: 12px;
   padding-bottom: 8px;
@@ -82,29 +82,29 @@ body {
 
 .us-map-inner {
    position: absolute;
-   left: 10px;
-   top: 0px;
-   width: 95%;
+   left: 0;
+   top: 0;
+   width: 98%;
    overflow: hidden;
    z-index: -5;
 }
 
 
 .mn-map { 
-  width: 96%;
-  height: 84%;
+  width: 95%;
+  height: 85.5%;
   overflow: hidden;
   z-index: 1;
-  margin-left: 12px;
-  margin-top: 8px;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
 
 .aqi-days { 
-  width: 94.5%; 
-  height: 80%;
+  width: 94%; 
+  height: 81%;
   overflow: hidden;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 

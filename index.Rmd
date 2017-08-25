@@ -17,11 +17,11 @@ output:
 <div class = "box left">
 <div class = "inner">
 
-<span class = "titles">Today&#39;s air quality </span><span class= "titles sub">Time lapse since Midnight</span>
+<span class = "titles">Today&#39;s air quality </span><span class= "titles sub">Time lapse since midnight</span>
 
 <div class = "us-map">
 <div style = "us-map-inner">           
-<img src   = "https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" border="0" title="U.S. AQI Animation" style = "width: 108%; margin-left: 4px; margin-right: 2px; margin-top: 0;">
+<img src   = "https://files.airnowtech.org/airnow/today/anim_aqi_usa.gif" border="0" title="U.S. AQI Animation" style = "width: 105%; margin-left: 4px; margin-right: 2px; margin-top: 0;">
 </div>
 </div>
 
