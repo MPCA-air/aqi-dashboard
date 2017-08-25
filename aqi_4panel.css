@@ -69,11 +69,11 @@ body {
 }
 
 .us-map {
-  width: 99%; 
-  height: 80%
+  width: 99.9%; 
+  height: 91%
   overflow: hidden;
-  margin-top: 7%;
-  margin-left: 6px;
+  margin-top: -11px;
+  margin-left: 2px;
   margin-right: 5px;
   padding-top: 12px;
   padding-bottom: 8px;
@@ -91,11 +91,11 @@ body {
 
 
 .mn-map { 
-  width: 93%;
+  width: 92%;
   height: 89%;
   overflow: hidden;
   z-index: 1;
-  margin-left: 8px;
+  margin-left: 7px;
   margin-top: 7px;
 }
 
