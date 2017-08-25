@@ -1,5 +1,6 @@
 # Download current AQI map as PNG image
 
+#library("webshot", lib.loc = "C:/Users/dkvale/Documents/R/R-3.4.1/library/")
 library(webshot)
 library(magick)
 

@@ -2,13 +2,16 @@
 
 library(readr)
 
-setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff folders/Dorian/AQI/Web/aqi-dashboard")
+push_git <- TRUE
 
-current_hour <- as.numeric(format(Sys.time(), "%H"))
+setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff folders/Dorian/AQI/Web/aqi-dashboard")
 
 # Load credentials
 creds <- read_csv("C:/Users/dkvale/Desktop/credentials.csv")
 
+
+# Check time
+current_hour <- as.numeric(format(Sys.time(), "%H"))
 
 if(current_hour > 6 & current_hour < 22) {
   
@@ -31,6 +34,7 @@ if(current_hour > 6 & current_hour < 22) {
   
   
   # Push to GitHub
+  if(push_git) {
   git <- 'X: & CD "X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff folders/Dorian/AQI/Web/aqi-dashboard/" & "C:/Users/dkvale/AppData/Local/Programs/Git/bin/git.exe" '
     
   #shell(paste0(git, "add ozone_chart.gif"))
@@ -46,5 +50,6 @@ if(current_hour > 6 & current_hour < 22) {
   push <- paste0(git, "push -f origin master")
     
   shell(push)
+  }
   
 }
