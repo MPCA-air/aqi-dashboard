@@ -32,7 +32,7 @@ body {
 }
 
 .left {
-  left: 1%; 
+  left: 1.2%; 
   top: 2%; 
   padding-top: 0;
   padding-left: 0;
@@ -51,7 +51,7 @@ body {
 }
 
 .right { 
-  left: 66.3%; 
+  left: 66.5%; 
   top: 2%; 
   padding-top: 0;
   width: 32.1%; 
@@ -60,7 +60,7 @@ body {
 }
 
 .right-low {
-  left: 66.3%; 
+  left: 66.5%; 
   top: 58%;
   padding-top: 0;
   width: 32.1%; 
