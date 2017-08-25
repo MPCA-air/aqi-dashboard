@@ -1,5 +1,7 @@
 #! /usr/bin/env Rscript
 
+library(readr)
+
 setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff folders/Dorian/AQI/Web/aqi-dashboard")
 
 current_hour <- as.numeric(format(Sys.time(), "%H"))
