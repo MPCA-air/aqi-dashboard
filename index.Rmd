@@ -36,7 +36,7 @@ output:
 
 <div class = "mn-map"> 
 
-<img src = "images/current_map.png" width="96%"> 
+<img src = "images/current_map.png"> 
 
 </div>
 
@@ -48,9 +48,9 @@ output:
    
 <span class = "titles">History </span><span class= "titles sub">AQI days in 2017</span>
 
-<div class = "aqi-days" style="margin-top: 2%;">
+<div class = "aqi-days">
 
-<img src = "images/history.gif" width="96%"> 
+<img src = "images/history.gif" width="95%"> 
 
 </div>
 
