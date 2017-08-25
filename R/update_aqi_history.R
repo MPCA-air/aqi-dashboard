@@ -9,6 +9,7 @@ library(tidyr)
 library(dplyr)
 library(readr)
 library(hrbrthemes)
+library(magick)
 
 # AQI color functions
 setwd("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//")
@@ -189,8 +190,32 @@ for(i in 1:4) {
     #print(pct_chart)
   } 
   
-  # Save chart 
+ 
 } 
+
+
+# Combine charts into a single GIF image
+img1 <- image_read(paste0("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/images/history1.png"))
+img2 <- image_read(paste0("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/images/history2.png"))
+img3 <- image_read(paste0("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/images/history3.png"))
+img4 <- image_read(paste0("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/images/history4.png"))
+
+list(img1, img1, img1, img1, img1, img1, image_morph(c(img1,img2), frames=1), 
+     img2, img2, img2, img2, img2, img2, image_morph(c(img2,img3), frames=1),
+     img3, img3, img3, img3, img3, img3, image_morph(c(img3,img4), frames=1),
+     img4, img4, img4, img4, img4, img4, image_morph(c(img4,img1), frames=1)) %>%
+  image_join() %>%
+  image_animate(fps=4) %>%
+  image_write(paste0("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Web//aqi-dashboard//images//history_fade.gif"))
+
+
+list(img1, img1, img1, 
+     img2, img2, img2, 
+     img3, img3, img3, 
+     img4, img4, img4) %>%
+  image_join() %>%
+  image_animate(fps=0.5) %>%
+  image_write(paste0("X://Agency_Files//Outcomes//Risk_Eval_Air_Mod//_Air_Risk_Evaluation//Staff Folders//Dorian//AQI//Web//aqi-dashboard//images//history.gif"))
 
 
 ##

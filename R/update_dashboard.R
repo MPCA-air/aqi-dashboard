@@ -10,20 +10,22 @@ creds <- read_csv("C:/Users/dkvale/Desktop/credentials.csv")
 
 if(current_hour > 6 & current_hour < 22) {
   
-  # Update hourly AQI trends
-  print("Updating hourly aqi trends")
+  # Update current AQI map
+  print("Updating current AQI map")
   setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/R")
-  try(source("update_aqi_trends.R"))
+  try(source("grab_current_aqi_map.R"))
+  
+  
+  # Update hourly AQI trends
+  #print("Updating hourly aqi trends")
+  #setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/R")
+  #try(source("update_aqi_trends.R"))
+  
   
   # Update Bloom Sky haze cameras
-  print("Updating haze cameras")
-  setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/R")
-  try(source("update_bloom_sky.R"))
-  
-  # Update dashboard html
-  setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff folders/Dorian/AQI/Web/aqi-dashboard/")
-  
-  rmarkdown::render("index.Rmd")
+  #print("Updating haze cameras")
+  #setwd("X:/Agency_Files/Outcomes/Risk_Eval_Air_Mod/_Air_Risk_Evaluation/Staff Folders/Dorian/AQI/Web/aqi-dashboard/R")
+  #try(source("update_bloom_sky.R"))
   
   
   # Push to GitHub
