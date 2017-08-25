@@ -32,9 +32,10 @@ body {
 }
 
 .left {
-  left: 2%; 
+  left: 1%; 
   top: 2%; 
   padding-top: 0;
+  padding-left: 0;
   width: 64%;  
   height: 96%;
 }
@@ -100,7 +101,7 @@ body {
 
 
 .aqi-days { 
-  width: 94%; 
+  width: 94.5%; 
   height: 80%;
   overflow: hidden;
   margin-top: 6px;

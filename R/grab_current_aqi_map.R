@@ -17,7 +17,7 @@ map <- image_read(file_path)
 map <- image_crop(map, "794x766+598+90")
 #map2 <- image_crop(map, "400x428+296+26")
 
-map
+#map
 
 image_write(map, path = file_path, format = "png")
 
