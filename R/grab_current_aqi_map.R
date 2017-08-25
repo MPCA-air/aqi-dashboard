@@ -14,10 +14,10 @@ webshot(map_url, file = file_path, zoom = 2)
 
 map <- image_read(file_path)
 
-map <- image_crop(map, "792x848+598+56")
+map <- image_crop(map, "794x766+598+90")
 #map2 <- image_crop(map, "400x428+296+26")
 
-#map
+map
 
 image_write(map, path = file_path, format = "png")
 
