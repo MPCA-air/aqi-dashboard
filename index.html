@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
-
 <title></title>
 
 <script src="index_files/jquery-1.11.3/jquery.min.js"></script>
@@ -79,10 +78,14 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 
+
 <div class="fluid-row" id="header">
 
 
+
+
 </div>
+
 
 <script type="text/JavaScript">
   setTimeout(function() { window.location=window.location; }, 1100000);
@@ -101,7 +104,7 @@ button.code-folding-btn:focus {
 <div class="inner">
 <p><span class="titles">Current </span><span class="titles sub">Air monitor results</span></p>
 <div class="mn-map">
-<p><img src = "images/current_map.png" width="100%"></p>
+<p><img src = "images/current_map.png" width="96%"></p>
 </div>
 </div>
 </div>
@@ -109,12 +112,29 @@ button.code-folding-btn:focus {
 <div class="inner">
 <p><span class="titles">History </span><span class="titles sub">AQI days in 2017</span></p>
 <div class="aqi-days" style="margin-top: 2%;">
-<p><img src = "images/history.gif" width="98%"></p>
+<p><img src = "images/history.gif" width="96%"></p>
 </div>
 </div>
 </div>
 
+
+
+
 </div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
 
 </body>
 </html>

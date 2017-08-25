@@ -46,10 +46,9 @@ body {
   left: 18px; 
   top: 2%; 
   padding-top: 0;
-  width: 61.7%;  
+  width: 62.7%;  
   height: 96%;
 }
-
 
 .inner { 
   padding: 0; 
@@ -62,20 +61,20 @@ body {
 }
 
 .right { 
-  left: 63.6%; 
+  left: 65.8%; 
   top: 2%; 
   padding-top: 0;
-  width: 35.4%; 
-  height: 52.6%;
+  width: 33.3%; 
+  height: 53.6%;
   z-index: 5;
 }
 
 .right-low {
-  left: 63.6%; 
-  top: 56.6%;
+  left: 65.8%; 
+  top: 57.6%;
   padding-top: 0;
-  width: 35.4%; 
-  height: 41.4%;
+  width: 33.3%; 
+  height: 40.4%;
  
 }
 
