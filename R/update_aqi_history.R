@@ -4,10 +4,7 @@
 extrafont::loadfonts(device="win")
 #extrafont::font_import() 
 #import_roboto_condensed()
-library(ggplot2)
-library(tidyr)
-library(dplyr)
-library(readr)
+library(tidyverse)
 library(hrbrthemes)
 library(magick)
 
